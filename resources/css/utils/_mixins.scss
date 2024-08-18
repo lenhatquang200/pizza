@@ -1,0 +1,35 @@
+// resources/css/utils/_mixins.scss
+// resources/css/utils/_mixins.scss
+
+@mixin responsive($breakpoint) {
+    @if $breakpoint == 'mobile' {
+        @media (max-width: 767px) {
+            @content;
+        }
+    } @else if $breakpoint == 'tablet' {
+        @media (min-width: 768px) and (max-width: 1024px) {
+            @content;
+        }
+    } @else if $breakpoint == 'desktop' {
+        @media (min-width: 1025px) {
+            @content;
+        }
+    }
+}
+
+@mixin border-radius($radius) {
+    border-radius: $radius;
+}
+@mixin button-style {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+
+    &:hover {
+        background-color: darken(#007bff, 10%);
+    }
+}

@@ -1,0 +1,130 @@
+// _navbar.scss
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 0 20px;
+    height: 60px;
+    color: white;
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: white;
+      text-decoration: none;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+
+      .menu-item {
+        margin: 0 15px;
+        position: relative;
+
+        a {
+          color: white;
+          text-decoration: none;
+          font-size: 1rem;
+          padding: 10px;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: #ddd;
+          }
+        }
+
+        // Dropdown menu
+        .dropdown {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background-color: #444;
+          padding: 10px;
+          border-radius: 5px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+          .dropdown-item {
+            padding: 10px 15px;
+            color: white;
+            text-decoration: none;
+            display: block;
+
+            &:hover {
+              background-color: #555;
+            }
+          }
+        }
+
+        &:hover .dropdown {
+          display: block;
+        }
+      }
+    }
+
+    .search-bar {
+      input[type="text"] {
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #555;
+        background-color: #444;
+        color: white;
+        font-size: 0.875rem;
+        transition: background-color 0.3s ease;
+
+        &:focus {
+          background-color: #555;
+          outline: none;
+        }
+      }
+    }
+
+@media (max-width: 768px) {
+    .admin-sidebar {
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+
+        &.show {
+            transform: translateX(0);
+        }
+    }
+
+    .btn-toggle-sidebar {
+        display: block; // Hiển thị nút toggle trên màn hình nhỏ
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        z-index: 2000; // Đảm bảo nút toggle nằm trên các phần tử khác
+    }
+
+    .btn-close-sidebar {
+        display: block; // Hiển thị nút đóng sidebar trên màn hình nhỏ
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        z-index: 2001; // Đảm bảo nút đóng nằm trên các phần tử khác
+    }
+}
+
+@media (min-width: 769px) {
+    .admin-sidebar {
+        width: 250px;
+        transform: none; // Hiển thị sidebar ở vị trí cố định trên màn hình lớn
+    }
+
+    .btn-toggle-sidebar,
+    .btn-close-sidebar {
+        display: none; // Ẩn các nút toggle và đóng trên màn hình lớn
+    }
+}
+
+  }

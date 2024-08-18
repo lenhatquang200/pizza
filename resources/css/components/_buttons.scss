@@ -1,0 +1,45 @@
+@import '../utils/variables';
+
+$button-padding: 0.5rem 1rem;
+$button-border-radius: 0.25rem;
+$button-font-size: 1rem;
+
+$button-primary-bg: $primary-color;
+$button-primary-color: #1b0606;
+$button-primary-border: $primary-color;
+
+$button-secondary-bg: #6c757d;
+$button-secondary-color: #ffffff;
+$button-secondary-border: #6c757d;
+
+.button {
+    display: inline-block;
+    padding: $button-padding;
+    border-radius: $button-border-radius;
+    font-size: $button-font-size;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+
+    &.primary {
+        background-color: $button-primary-bg;
+        color: $button-primary-color;
+        border-color: $button-primary-border;
+
+        &:hover {
+            background-color: darken($button-primary-bg, 10%);
+        }
+    }
+
+    &.secondary {
+        background-color: $button-secondary-bg;
+        color: $button-secondary-color;
+        border-color: $button-secondary-border;
+
+        &:hover {
+            background-color: darken($button-secondary-bg, 10%);
+        }
+    }
+}

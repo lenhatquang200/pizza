@@ -1,0 +1,87 @@
+/* _reset.scss */
+
+/* Reset margin and padding for all elements */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Reset margin and padding for all column classes */
+[class*='col'] {
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove list styles */
+ul,
+ol {
+    list-style: none;
+}
+
+/* Remove default border on images */
+img {
+    border: 0;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Remove default underline on links */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Remove default styling for tables */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Ensure font sizes are consistent */
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+}
+
+/* Set a consistent base font size */
+html {
+    font-size: 100%; /* 16px for most browsers */
+}
+
+/* Ensure that heading elements have a consistent margin */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    font-weight: normal;
+}
+
+/* Remove default styling for forms */
+input,
+textarea,
+button,
+select {
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+/* Set default styles for buttons */
+button {
+    background: none;
+    cursor: pointer;
+}
+
+/* Set default styles for table elements */
+th,
+td {
+    text-align: left;
+}
