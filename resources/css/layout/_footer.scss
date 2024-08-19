@@ -1,0 +1,101 @@
+.footer-content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2vw 0;
+    gap: 14vw;
+
+    .footer-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        img {
+            max-width: 15vw;
+            height: auto;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.5vw;
+            margin-top: 1vw;
+
+            .social-icon {
+                font-size: 1vw;
+                width: 2.2vw;
+                height: 2.2vw;
+                color: $white;
+                padding: 0.4vw;
+                border-radius: 50%;
+                background-color: $secondary-color;
+                transition: background-color 0.3s ease;
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+
+    .footer-links {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        gap: 5vw;
+
+        h4 {
+            font-size: 1.2vw;
+            margin-bottom: 1vw;
+            color: $black;
+            font-weight: $primary-font-weight;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+
+            li {
+                margin-bottom: 0.5vw;
+
+                a {
+                    color: $black;
+                    font-size: 1vw;
+                    text-decoration: none;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.footer-bottom {
+    font-size: 1vw;
+    text-align: center;
+    margin-top: 2vw;
+    padding: 1vw;
+    border-top: 1px solid $primary-color;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        .footer-brand {
+            width: 100%;
+            img {
+                max-width: 30vw;
+            }
+
+            .social-icons,
+            .footer-links {
+                display: none;
+            }
+        }
+    }
+}

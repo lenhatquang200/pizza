@@ -1,0 +1,405 @@
+// Global styles for all slick sliders
+.slick-slider {
+    position: relative;
+    height: auto;
+    overflow: hidden;
+    margin-top: 1%;
+    object-fit: cover;
+
+    .carousel-slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        position: relative;
+
+        .text-overlay-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+
+            img {
+                display: block;
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+            }
+        }
+    }
+
+    .slick-prev,
+    .slick-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: $white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 1.5vw;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+    }
+
+    .slick-prev {
+        left: 10px;
+    }
+
+    .slick-next {
+        right: 10px;
+    }
+}
+
+#menu-image-slider {
+    .carousel-slide {
+        .text-overlay-wrapper {
+            .overlay-background {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(10, 5, 15, 0.5);
+                z-index: 5;
+            }
+
+            .text-overlay-container {
+                .text-overlay-primary {
+                    position: absolute;
+                    top: 35%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    color: $white;
+                    font-size: $h3-font-size;
+                    font-weight: bold;
+                    text-shadow: $text-shadow;
+                    z-index: 10;
+                    pointer-events: none;
+                    text-align: center;
+                    width: 100%;
+                    padding: 0 1rem;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .btn-view-menu {
+                    position: absolute;
+                    top: 55%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: $primary-color;
+                    color: $white;
+                    text-decoration: none;
+                    padding: 0.2vw 2vw;
+                    font-size: $secondary-font-size;
+                    font-weight: $primary-font-weight;
+                    text-shadow: none;
+                    box-shadow: 0.2vw 0.2vw 0 $secondary-color;
+                    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                    z-index: 10;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: darken($primary-color, 10%);
+                        box-shadow: 0.6vw 0.6vw 0 $primary-color;
+                    }
+                }
+            }
+        }
+    }
+}
+.container-fluid {
+    overflow: hidden;
+    .coupons-column{
+        margin: 0.8vw 0vw;
+    }
+}
+#home-image-slider {
+    .carousel-slide {
+        display: flex;
+        justify-content: left;
+
+        .text-overlay-wrapper {
+            position: relative;
+            width: 100%;
+            height: auto;
+
+            .overlay-background {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(10, 5, 15, 0.2);
+                z-index: 5;
+            }
+
+            img {
+                margin: 0.8vw 0vw;
+                width: 98%;
+                height: auto;
+                aspect-ratio: 1 / 1;
+                object-fit: cover;
+            }
+
+            .custom-overlay {
+                position: absolute;
+                top: 6%;
+                left: 6%;
+                padding: 0;
+                z-index: 10;
+                width: 8.2vw;
+                height: 1.6vw;
+                background-color: $white;
+                align-items: left;
+                justify-content: center;
+
+                .custom-text {
+                    font-size: 1.2vw;
+                    font-weight: 600;
+                    color: $primary-color;
+                    text-align: center;
+                    margin: 0;
+                }
+            }
+
+            .text-overlay-primary {
+                position: absolute;
+                top: 10%;
+                left: 6%;
+                color: $white;
+                font-size: $h2-font-size;
+                font-weight: bold;
+                z-index: 10;
+                pointer-events: none;
+                text-align: left;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                text-shadow: $text-shadow;
+            }
+
+            .text-overlay-secondary {
+                position: absolute;
+                top: 28%;
+                left: 6%;
+                color: $white;
+                font-size: $h3-font-size;
+                font-weight: $primary-font-weight;
+                z-index: 10;
+                pointer-events: none;
+                text-align: left;
+                width: 100%;
+            }
+
+            .btn-view-menu {
+                position: absolute;
+                top: 88%;
+                left: 6%;
+                background-color: $primary-color;
+                color: $white;
+                text-decoration: none;
+                font-size: $secondary-font-size;
+                font-weight: $primary-font-weight;
+                padding: 0 1vw;
+                text-shadow: none;
+                box-shadow: 0.2vw 0.2vw 0 $secondary-color;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                z-index: 10;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: darken($primary-color, 10%);
+                    box-shadow: 0.6vw 0.6vw 0 $primary-color;
+                }
+            }
+        }
+    }
+}
+
+// Specific styles for coupons1
+#coupons1 {
+    .carousel-slide {
+        .text-overlay-wrapper {
+            position: relative;
+            width: 100%;
+            height: auto;
+
+            .overlay-background {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: rgba(10, 5, 15, 0.2);
+                z-index: 5;
+            }
+
+            .custom-overlay {
+                position: absolute;
+                top: 6%;
+                left: 6%;
+                padding: 0;
+                z-index: 10;
+                width: 8.2vw;
+                height: 1.6vw;
+                background-color: $white;
+                align-items: left;
+                justify-content: center;
+
+                .custom-text {
+                    font-size: 1.2vw;
+                    font-weight: 600;
+                    color: $primary-color;
+                    text-align: center;
+                    margin: 0;
+                }
+            }
+
+            .text-overlay-primary {
+                position: absolute;
+                top: 8%;
+                right: 8%;
+                color: $white;
+                font-size: $h2-font-size;
+                font-weight: bold;
+                z-index: 10;
+                pointer-events: none;
+                text-align: right;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                text-shadow: $text-shadow;
+            }
+
+            .text-overlay-secondary {
+                position: absolute;
+                top: 22%;
+                left: 6%;
+                color: $white;
+                font-size: $h3-font-size;
+                font-weight: $primary-font-weight;
+                z-index: 10;
+                pointer-events: none;
+                text-align: left;
+                width: 60%;
+            }
+
+            .btn-view-menu {
+                position: absolute;
+                left: 6%;
+                bottom: 6%;
+                background-color: $primary-color;
+                color: $white;
+                text-decoration: none;
+                font-size: $secondary-font-size;
+                font-weight: $primary-font-weight;
+                padding: 0 1vw;
+                text-shadow: none;
+                box-shadow: 0.2vw 0.2vw 0 $secondary-color;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                z-index: 10;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: darken($primary-color, 10%);
+                    box-shadow: 0.6vw 0.6vw 0 $primary-color;
+                }
+            }
+        }
+    }
+}
+
+// Specific styles for coupons2
+#coupons2 {
+    .carousel-slide {
+        .text-overlay-wrapper {
+            position: relative;
+            width: 100%;
+            height: auto;
+
+            .overlay-background {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: rgba(10, 5, 15, 0.2);
+                z-index: 5;
+            }
+
+            .custom-overlay {
+                position: absolute;
+                top: 6%;
+                left: 6%;
+                padding: 0;
+                z-index: 10;
+                width: 8.2vw;
+                height: 1.6vw;
+                background-color: $white;
+                align-items: left;
+                justify-content: center;
+
+                .custom-text {
+                    font-size: 1.2vw;
+                    font-weight: 600;
+                    color: $primary-color;
+                    text-align: center;
+                    margin: 0;
+                }
+            }
+
+            .text-overlay-primary {
+                position: absolute;
+                top: 8%;
+                right: 8%;
+                color: $white;
+                font-size: $h2-font-size;
+                font-weight: bold;
+                z-index: 10;
+                pointer-events: none;
+                text-align: right;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                text-shadow: $text-shadow;
+            }
+
+            .text-overlay-secondary {
+                position: absolute;
+                top: 22%;
+                left: 6%;
+                color: $white;
+                font-size: $h3-font-size;
+                font-weight: $primary-font-weight;
+                z-index: 10;
+                pointer-events: none;
+                text-align: left;
+                width: 60%;
+            }
+
+            .btn-view-menu {
+                position: absolute;
+                left: 6%;
+                bottom: 6%;
+                background-color: $primary-color;
+                color: $white;
+                text-decoration: none;
+                font-size: $secondary-font-size;
+                font-weight: $primary-font-weight;
+                padding: 0 1vw;
+                text-shadow: none;
+                box-shadow: 0.2vw 0.2vw 0 $secondary-color;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                z-index: 10;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: darken($primary-color, 10%);
+                    box-shadow: 0.6vw 0.6vw 0 $primary-color;
+                }
+            }
+        }
+    }
+}

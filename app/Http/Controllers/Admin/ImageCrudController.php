@@ -6,6 +6,7 @@ use App\Http\Requests\ImageRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class ImageCrudController
@@ -65,37 +66,28 @@ class ImageCrudController extends CrudController
         CRUD::addField([
             'name' => 'pagename',
             'label' => 'Page Name',
-            'type' => 'text',
+            'type' => 'select_from_array',
+            'options' => \App\Enums\PageNameEnum::all(), // Đây là mảng các giá trị
+            'allows_null' => false,
+            'default' => \App\Enums\PageNameEnum::HOME,
         ]);
 
         CRUD::addField([
             'name' => 'imagetype',
             'label' => 'Image Type',
-            'type' => 'text',
-        ]);
-
-        CRUD::addField([
-            'name' => 'image',
-            'label' => 'Image',
-            'type' => 'upload',
-            'upload' => true,
-            'disk' => 'public',
-            'prefix' => 'uploads/',
-            'wrapper' => [
-                'class' => 'form-group col-md-6',
-            ],
+            'type' => 'select_from_array',
+            'options' => \App\Enums\ImageTypeEnum::all(),
+            'allows_null' => false,
+            'default' => \App\Enums\ImageTypeEnum::BANNERHOME,
         ]);
 
         CRUD::addField([
             'name' => 'imageurl',
             'label' => 'Image URL',
-            'type' => 'text',
-            'attributes' => [
-                'readonly' => true,
-            ],
-            'wrapper' => [
-                'class' => 'form-group col-md-6',
-            ],
+            'type' => 'upload',
+            'upload' => true,
+            'disk' => 'public',
+            'prefix' => 'uploads/',
         ]);
 
         Log::info('Create Operation setup completed for ImageCrudController.');
@@ -110,24 +102,63 @@ class ImageCrudController extends CrudController
     {
         $this->setupCreateOperation();
     }
-
     public function store(\Illuminate\Http\Request $request)
     {
-    $this->validate($request, [
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
+        // Validate input
+        $this->validate($request, [
+            'imageurl' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-    $data = $request->except('image');
+        // Store file and get path
+        $data = $request->except('imageurl');
 
-    if ($request->hasFile('image')) {
-        // Lưu ảnh vào thư mục uploads
-        $imagePath = $request->file('image')->store('uploads', 'public');
-        // Lưu đường dẫn ảnh vào cơ sở dữ liệu
-        $data['imageurl'] = $imagePath;
+        if ($request->hasFile('imageurl')) {
+            $imagePath = $request->file('imageurl')->store('uploads', 'public');
+            $data['imageurl'] = $imagePath;
+        }
+
+        // Ensure 'pagename' and 'imagetype' are text values
+        $data['pagename'] = \App\Enums\PageNameEnum::getName($data['pagename']);
+        $data['imagetype'] = \App\Enums\ImageTypeEnum::getName($data['imagetype']);
+
+        // Save data
+        CRUD::create($data);
+
+        \Alert::success('Image uploaded successfully.')->flash();
+
+        return redirect()->back();
     }
+    public function update(\Illuminate\Http\Request $request)
+    {
+        // Validate input
+        $this->validate($request, [
+            'imageurl' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-    CRUD::create($data);
+        $data = $request->except('imageurl');
 
-    return redirect()->back()->with('success', 'Image uploaded successfully.');
+        // Xử lý lưu trữ ảnh
+        if ($request->hasFile('imageurl')) {
+            $imagePath = $request->file('imageurl')->store('uploads', 'public');
+            $data['imageurl'] = $imagePath;
+
+            // Xóa ảnh cũ nếu có
+            $model = CRUD::getCurrentEntry();
+            if ($model && $model->imageurl) {
+                Storage::disk('public')->delete($model->imageurl);
+            }
+        }
+
+        // Ensure 'pagename' and 'imagetype' are text values
+        $data['pagename'] = \App\Enums\PageNameEnum::getName($data['pagename']);
+        $data['imagetype'] = \App\Enums\ImageTypeEnum::getName($data['imagetype']);
+
+        // Cập nhật dữ liệu
+        $model = CRUD::getCurrentEntry();
+        $model->update($data);
+
+        \Alert::success('Image updated successfully.')->flash();
+
+        return redirect()->back();
     }
 }

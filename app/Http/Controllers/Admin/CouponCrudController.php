@@ -41,7 +41,6 @@ class CouponCrudController extends CrudController
 
     protected function setupListOperation()
     {
-        // Log thông tin cơ bản
         Log::info('Setting up list operation for coupons');
 
         CRUD::column('bannerurl')->label('Banner URL')->type('text');
@@ -51,9 +50,16 @@ class CouponCrudController extends CrudController
         CRUD::column('displayto')->label('Display To')->type('datetime');
         CRUD::column('isfeatured')->label('Featured')->type('boolean');
 
-        // Log dữ liệu để kiểm tra
-        // Log::info('Data in list operation:', ['data' => CRUD::getEntries()]);
-        // Log::info('Data from CRUD:', ['data' => $this->crud->getEntries()]);
+
+         // Using dd() to check the data
+        // $entries = CRUD::getEntries();
+        // dd($entries);  // Dump and die the entries
+
+        // // Alternatively, if CRUD::getEntries() does not work, you can directly dump data from the model
+        // $data = \App\Models\Coupon::all();  // Assuming Coupon is your model
+        // dd($data);  // Dump and die the data
+        Log::info('Data in list operation:', ['data' => CRUD::getEntries()]);
+        Log::info('Data from CRUD:', ['data' => $this->crud->getEntries()]);
 
     }
 
@@ -66,13 +72,16 @@ class CouponCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(CouponRequest::class);
-
         CRUD::addFields([
             [
                 'name' => 'bannerurl',
                 'label' => 'Banner URL',
-                'type' => 'text',
+                'type' => 'upload',
+                'upload' => true,
+                'disk' => 'public',
+                'prefix' => 'uploads/',
             ],
+
             [
                 'name' => 'validfrom',
                 'label' => 'Valid From',
@@ -110,5 +119,50 @@ class CouponCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+    public function store(\Illuminate\Http\Request $request)
+{
+    $this->validate($request, [
+        'bannerurl' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    $data = $request->except('bannerurl');
+
+    if ($request->hasFile('bannerurl')) {
+        $imagePath = $request->file('bannerurl')->store('uploads', 'public');
+        $data['bannerurl'] = $imagePath;
+    }
+
+    CRUD::create($data);
+
+    \Alert::success('Coupon created successfully.')->flash();
+
+    return redirect()->back();
+}
+
+public function update(\Illuminate\Http\Request $request)
+{
+    $this->validate($request, [
+        'bannerurl' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    $data = $request->except('bannerurl');
+
+    if ($request->hasFile('bannerurl')) {
+        $imagePath = $request->file('bannerurl')->store('uploads', 'public');
+        $data['bannerurl'] = $imagePath;
+
+        $model = CRUD::getCurrentEntry();
+        if ($model && $model->bannerurl) {
+            Storage::disk('public')->delete($model->bannerurl);
+        }
+    }
+
+    $model = CRUD::getCurrentEntry();
+    $model->update($data);
+
+    \Alert::success('Coupon updated successfully.')->flash();
+
+    return redirect()->back();
     }
 }

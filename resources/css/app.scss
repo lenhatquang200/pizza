@@ -9,16 +9,8 @@
 @import 'layout/header';
 @import 'layout/footer';
 
-@import 'components/buttons';
 @import 'components/navbar';
+@import 'components/navbar_menu';
 
-@import 'pages/home';
-@import 'pages/about';
-
-// Import for layout Admin
-@import 'components/admin/sidebar';
-@import 'layout/admin';
-@import 'components/admin/admin-content';
-@import 'components/admin/dashboard/dashboard';
-@import 'components/admin/upload/upload';
-// @import "~bootstrap/scss/bootstrap";
+@import 'pages/home/home';
+@import 'pages/app';

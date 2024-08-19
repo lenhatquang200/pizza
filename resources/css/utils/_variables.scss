@@ -2,6 +2,7 @@
 $font-stack: 'Helvetica Neue', Arial, sans-serif;
 $heading-font-family: 'Georgia', serif;
 $heading-font-weight: 700;
+$primary-font-weight: 600;
 $heading-color: #333333;
 
 $font-size-h1: 2.5rem;
@@ -45,4 +46,14 @@ $blockquote-border-color: #e0e0e0;
 $code-font-family: 'Courier New', monospace;
 $code-background: #f4f4f4;
 
-$primary-color: #DF6A1A;
+$primary-color: #FA812A;
+$secondary-color: #EB6200;
+$white: #ffffff;
+$black: #000000;
+$color-background: #efefef;
+$text-shadow: 0.2vw 0.2vw 0 $secondary-color;
+$h2-font-size: 4.2vw;
+$primary-font-size: 1.2vw;
+$secondary-font-size: 1.52vw;
+$h3-font-size: 2vw;
+$h6-font-size: 1vw;

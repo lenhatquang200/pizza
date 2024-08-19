@@ -19,6 +19,9 @@ Route::group([
     Route::crud('image', 'ImageCrudController');
     Route::crud('user', 'UserCrudController');
     Route::crud('coupon', 'CouponCrudController');
+    Route::crud('location', 'LocationCrudController');
+    Route::crud('pagecontent', 'PagecontentCrudController');
+    Route::crud('review', 'ReviewCrudController');
 }); // this should be the absolute last line of this file
 
 /**

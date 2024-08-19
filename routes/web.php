@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -11,12 +12,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function () {
-    return view('layouts/app');
-});
-// Route::get('/custom-admin', function () {
-//     return view('admin.dashboard');
-// });
-// Route::get('/admin/uploadsphoto', [AdminController::class, 'uploadsPhoto'])->name('admin.uploadsphoto');
-// Route::post('/admin/uploadsphoto', [AdminController::class, 'storeUploadPhoto'])->name('admin.uploadsphoto.store');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+
 
