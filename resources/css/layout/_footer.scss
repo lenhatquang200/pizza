@@ -46,7 +46,6 @@
 
         h4 {
             font-size: 1.2vw;
-            margin-bottom: 1vw;
             color: $black;
             font-weight: $primary-font-weight;
         }
@@ -56,8 +55,6 @@
             padding: 0;
 
             li {
-                margin-bottom: 0.5vw;
-
                 a {
                     color: $black;
                     font-size: 1vw;
@@ -81,21 +78,33 @@
 }
 
 @media (max-width: 768px) {
-    .footer-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-
-        .footer-brand {
-            width: 100%;
-            img {
-                max-width: 30vw;
+    .container {
+        width: 100%;
+        padding: 0 15px;
+        .footer-content {
+            display: flex;
+            justify-content: left;
+            align-items: left;
+            text-align: left;
+            .footer-brand {
+                width: 100%;
+                img {
+                    max-width: 20vw;
+                }
             }
-
-            .social-icons,
-            .footer-links {
-                display: none;
+            .footer-links{
+                width: 100%;
+                ul {
+                    list-style: none;
+                    padding: 0;
+                    height: 8vw;
+                    li {
+                        height: 2.6vw;
+                    }
+                }
             }
         }
     }
 }
+
+

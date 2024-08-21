@@ -3,7 +3,7 @@
         <a class="navbar-brand" href="/">
             <img src="{{ asset('storage/images/logo.png') }}" alt="Piazza Orsillo Logo">
         </a>
-        <div class="collapse navbar-collapse">
+        <div class="navbar-collapse">
             <div class="navbar-info">
                 <div class="order-info">
                     <button class="btn btn-order-now">
@@ -16,7 +16,7 @@
                 </div>
                 <div class="address-info">
                     <button class="btn btn-address">
-                        <i class="fas fa-map-marker-alt address-icon"></i> <!-- Font Awesome icon -->
+                        <i class="fas fa-map-marker-alt address-icon"></i>
                         Address
                     </button>
                     <p class="address-details">

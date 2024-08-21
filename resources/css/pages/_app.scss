@@ -1,33 +1,37 @@
 /* container.scss */
-.container {
-    width: 100%;
-    max-width: 1140px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 0;
-    padding-right: 0;
+body {
+    margin-bottom: 0 !important;
+    .container {
+        width: 100%;
+        max-width: 1140px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0;
+        padding-right: 0;
 
-    @media (max-width: 1199.98px) {
-        max-width: 960px;
+        @media (max-width: 1199.98px) {
+            max-width: 960px;
+        }
+
+        @media (max-width: 991.98px) {
+            max-width: 720px;
+        }
+
+        @media (max-width: 767.98px) {
+            max-width: 540px;
+        }
+
+        @media (max-width: 575.98px) {
+            max-width: 100%;
+        }
     }
 
-    @media (max-width: 991.98px) {
-        max-width: 720px;
+    /* container-fluid.scss */
+    .container-fluid {
+        background-color: $color-background;
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
     }
 
-    @media (max-width: 767.98px) {
-        max-width: 540px;
-    }
-
-    @media (max-width: 575.98px) {
-        max-width: 100%;
-    }
-}
-
-/* container-fluid.scss */
-.container-fluid {
-    background-color: $color-background;
-    width: 100%;
-    padding-left: 0;
-    padding-right: 0;
 }

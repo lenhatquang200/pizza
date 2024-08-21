@@ -109,7 +109,6 @@ class ImageCrudController extends CrudController
             'imageurl' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Store file and get path
         $data = $request->except('imageurl');
 
         if ($request->hasFile('imageurl')) {
@@ -137,12 +136,10 @@ class ImageCrudController extends CrudController
 
         $data = $request->except('imageurl');
 
-        // Xử lý lưu trữ ảnh
         if ($request->hasFile('imageurl')) {
             $imagePath = $request->file('imageurl')->store('uploads', 'public');
             $data['imageurl'] = $imagePath;
 
-            // Xóa ảnh cũ nếu có
             $model = CRUD::getCurrentEntry();
             if ($model && $model->imageurl) {
                 Storage::disk('public')->delete($model->imageurl);
@@ -153,7 +150,6 @@ class ImageCrudController extends CrudController
         $data['pagename'] = \App\Enums\PageNameEnum::getName($data['pagename']);
         $data['imagetype'] = \App\Enums\ImageTypeEnum::getName($data['imagetype']);
 
-        // Cập nhật dữ liệu
         $model = CRUD::getCurrentEntry();
         $model->update($data);
 

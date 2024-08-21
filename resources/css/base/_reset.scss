@@ -10,9 +10,10 @@
 }
 
 /* Reset margin and padding for all column classes */
-[class*='col'] {
-    margin: 0;
-    padding: 0;
+.col-lg-6,
+.col-md-12 {
+  margin: 0;
+  padding: 0;
 }
 
 /* Remove list styles */
@@ -44,6 +45,8 @@ table {
 body {
     font-family: sans-serif;
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
 }
 
 /* Set a consistent base font size */
@@ -58,7 +61,6 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0;
     font-weight: normal;
 }
 

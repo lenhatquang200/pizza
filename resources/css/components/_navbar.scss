@@ -7,7 +7,7 @@
     flex-direction: column;
 
     @media (min-width: 1024px) {
-        padding: 0 12vw;    
+        padding: 0 12vw;
     }
 }
 
@@ -19,133 +19,92 @@
     padding: 0;
     height: 8vw;
     box-shadow: 0 0.2vw 0.4vw rgba(0, 0, 0, 0.1);
-    position: relative;
-
+    flex-wrap: nowrap;
     .navbar-brand {
         display: flex;
         align-items: center;
         margin-top: 0.1vw;
         margin-bottom: 0.1vw;
+        gap: 1vw;
 
         img {
             max-height: 5vw;
             height: auto;
         }
     }
-
-    .navbar-info {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        width: 100%;
-        gap: 1vw;
-
-        @media (max-width: 768px) {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .order-info {
+    .navbar-collapse{
+        width: 50%;
+        .navbar-info {
             display: flex;
+            justify-content: flex-end;
             align-items: center;
-            margin-right: 2vw;
-
-            .btn-order-now {
-                margin-right: 1vw;
-                background-color: $primary-color;
-                color: $white;
-                border: none;
-                padding: 0.8vw 1.5vw;
-                font-size: 1vw;
-                cursor: pointer;
-                transition: background-color 0.3s ease;
-
-                &:hover {
-                    background-color: darken($primary-color, 10%);
-                }
-            }
-
-            .contact-numbers {
-                display: flex;
-                flex-direction: column;
-                font-size: 1vw;
-                font-weight: 600;
-
-                span {
-                    display: block;
-                }
-            }
-        }
-
-        .address-info {
-            display: flex;
-            align-items: center;
+            width: 100%;
             gap: 1vw;
 
-            .btn-address {
+            .order-info {
                 display: flex;
                 align-items: center;
-                background-color: $primary-color;
-                color: $white;
-                border: none;
-                padding: 0.8vw 1.5vw;
-                border-radius: 0.5vw;
-                font-size: 1vw;
-                cursor: pointer;
+                margin-right: 2vw;
 
-                .address-icon {
-                    margin-right: 0.5vw;
-                }
-            }
-
-            .address-details {
-                margin: 0;
-                line-height: 1.4;
-                font-weight: 600;
-                max-width: 20vw;
-                font-size: 1vw;
-                text-align: center;
-                overflow-wrap: break-word;
-            }
-        }
-    }
-}
-
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0.5vw;
-        height: auto;
-
-        .navbar-brand {
-            margin: 0.1vw 0;
-        }
-
-        .navbar-info {
-            flex-direction: column;
-            align-items: flex-start;
-
-            .order-info {
-                margin-right: 0;
-                margin-bottom: 1.5vw;
                 .btn-order-now {
-                    margin-right: 0;
-                    margin-bottom: 1.5vw;
+                    margin-right: 1vw;
+                    background-color: $primary-color;
+                    color: $white;
+                    border: none;
+                    padding: 0.8vw 1.5vw;
+                    font-size: 1vw;
+                    border-radius: 0.5vw;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: darken($primary-color, 10%);
+                    }
+                }
+
+                .contact-numbers {
+                    display: flex;
+                    flex-direction: column;
+                    font-size: 1vw;
+                    font-weight: 600;
+
+                    span {
+                        display: block;
+                    }
                 }
             }
 
             .address-info {
+                display: flex;
+                align-items: center;
+                gap: 1vw;
+
                 .btn-address {
+                    display: flex;
+                    align-items: center;
+                    background-color: $primary-color;
+                    color: $white;
+                    border: none;
+                    padding: 0.8vw 1.5vw;
+                    border-radius: 0.5vw;
+                    font-size: 1vw;
+                    cursor: pointer;
+
                     .address-icon {
                         margin-right: 0.5vw;
-                        font-size: 1vw;
                     }
                 }
+
                 .address-details {
-                    font-size: 0.75vw;
+                    margin: 0;
+                    line-height: 1.4;
+                    font-weight: 600;
+                    max-width: 20vw;
+                    font-size: 1vw;
+                    text-align: center;
+                    overflow-wrap: break-word;
                 }
             }
         }
     }
 }
+

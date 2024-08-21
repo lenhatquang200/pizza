@@ -63,7 +63,7 @@
                     'noCouponsMessage' => 'No coupons found.'
                 ])
                 @endcomponent
-            </div>
+            </div>  
         </div>
     </div>
 @endsection
