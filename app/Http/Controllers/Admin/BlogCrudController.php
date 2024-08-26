@@ -68,6 +68,7 @@ class BlogCrudController extends CrudController
             'type' => 'textarea',
             'attributes' => [
                 'id' => 'content',
+                'rows'=>30
             ],
         ]);
 
@@ -84,6 +85,7 @@ class BlogCrudController extends CrudController
             'label' => 'Short Description',
             'type' => 'textarea',
         ]);
+        $this->crud->setCreateView('admin.blog.create');
     }
 
 
@@ -96,6 +98,7 @@ class BlogCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+        $this->crud->setUpdateView('admin.blog.edit');
     }
 
     /**
