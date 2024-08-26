@@ -5,6 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Blog extends Model
@@ -26,6 +27,12 @@ class Blog extends Model
 
         static::updating(function ($blog) {
             $blog->slug = Str::slug($blog->title);
+        });
+
+        static::deleting(function ($blog) {
+            if (Storage::disk('public')->exists($blog->image)) {
+                Storage::disk('public')->delete($blog->image);
+            }
         });
     }
 }

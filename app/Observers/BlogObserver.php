@@ -3,7 +3,7 @@
 // app/Observers/BlogObserver.php
 
 namespace App\Observers;
-
+use Illuminate\Support\Facades\Storage;
 use App\Models\Blog;
 
 class BlogObserver

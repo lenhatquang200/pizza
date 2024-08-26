@@ -42,7 +42,14 @@ class BlogCrudController extends CrudController
     {
         CRUD::column('title');
         CRUD::column('content');
-        CRUD::column('image')->type('image'); // Adjusted to 'image' for displaying
+        $this->crud->addColumn([
+            'name' => 'image',
+            'label' => 'Image',
+            'type' => 'image',
+            'prefix' => 'storage/',
+            'height' => '60px',
+            'width' => 'auto',
+        ]);
         CRUD::column('short_description');
     }
 
