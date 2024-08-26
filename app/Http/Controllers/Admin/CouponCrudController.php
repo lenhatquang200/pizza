@@ -39,28 +39,26 @@ class CouponCrudController extends CrudController
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
      */
+    protected function setupListOperation()
+    {
+        Log::info('Setting up list operation for coupons');
 
-     protected function setupListOperation()
-     {
-         Log::info('Setting up list operation for coupons');
+        CRUD::column('bannerurl')
+            ->label('Banner')
+            ->type('image')
+            ->prefix('storage/')
+            ->height('60px')
+            ->width('auto');
 
-         // Display image directly
-         CRUD::column('bannerurl')
-             ->label('Banner')
-             ->type('image') // Set the column type to 'image'
-             ->prefix('storage/') // Prefix path for images
-             ->height('60px') // Optional: Set the height of the image
-             ->width('auto'); // Optional: Set the width of the image
+        CRUD::column('validfrom')->label('Valid From')->type('datetime');
+        CRUD::column('validto')->label('Valid To')->type('datetime');
+        CRUD::column('displayfrom')->label('Display From')->type('datetime');
+        CRUD::column('displayto')->label('Display To')->type('datetime');
+        CRUD::column('isfeatured')->label('Featured')->type('boolean');
 
-         CRUD::column('validfrom')->label('Valid From')->type('datetime');
-         CRUD::column('validto')->label('Valid To')->type('datetime');
-         CRUD::column('displayfrom')->label('Display From')->type('datetime');
-         CRUD::column('displayto')->label('Display To')->type('datetime');
-         CRUD::column('isfeatured')->label('Featured')->type('boolean');
-
-         Log::info('Data in list operation:', ['data' => CRUD::getEntries()]);
-         Log::info('Data from CRUD:', ['data' => $this->crud->getEntries()]);
-     }
+        Log::info('Data in list operation:', ['data' => CRUD::getEntries()]);
+        Log::info('Data from CRUD:', ['data' => $this->crud->getEntries()]);
+    }
 
     /**
      * Define what happens when the Create operation is loaded.
@@ -80,19 +78,16 @@ class CouponCrudController extends CrudController
                 'disk' => 'public',
                 'prefix' => '',
             ],
-
             [
                 'name' => 'couponcode',
                 'label' => 'Coupon Code',
                 'type' => 'text',
             ],
-
             [
                 'name' => 'url',
                 'label' => 'Coupon URL',
                 'type' => 'text',
             ],
-
             [
                 'name' => 'validfrom',
                 'label' => 'Valid From',
@@ -131,49 +126,60 @@ class CouponCrudController extends CrudController
     {
         $this->setupCreateOperation();
     }
+
     public function store(\Illuminate\Http\Request $request)
-{
-    $this->validate($request, [
-        'bannerurl' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
+    {
+        $this->validate($request, [
+            'bannerurl' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-    $data = $request->except('bannerurl');
+        $data = $request->except('bannerurl');
 
-    if ($request->hasFile('bannerurl')) {
-        $imagePath = $request->file('bannerurl')->store('uploads', 'public');
-        $data['bannerurl'] = $imagePath;
+        if (isset($data['isfeatured']) && $data['isfeatured']) {
+            \App\Models\Coupon::where('isfeatured', true)->update(['isfeatured' => false]);
+        }
+
+        if ($request->hasFile('bannerurl')) {
+            $imagePath = $request->file('bannerurl')->store('uploads', 'public');
+            $data['bannerurl'] = $imagePath;
+        }
+
+        CRUD::create($data);
+
+        \Alert::success('Coupon created successfully.')->flash();
+
+        return redirect()->back();
     }
 
-    CRUD::create($data);
+    public function update(\Illuminate\Http\Request $request)
+    {
+        $this->validate($request, [
+            'bannerurl' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-    \Alert::success('Coupon created successfully.')->flash();
+        $data = $request->except('bannerurl');
 
-    return redirect()->back();
-}
+        if (isset($data['isfeatured']) && $data['isfeatured']) {
+            \App\Models\Coupon::where('isfeatured', true)
+                ->where('id', '!=', CRUD::getCurrentEntryId())
+                ->update(['isfeatured' => false]);
+        }
 
-public function update(\Illuminate\Http\Request $request)
-{
-    $this->validate($request, [
-        'bannerurl' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
+        if ($request->hasFile('bannerurl')) {
+            $imagePath = $request->file('bannerurl')->store('uploads', 'public');
+            $data['bannerurl'] = $imagePath;
 
-    $data = $request->except('bannerurl');
-
-    if ($request->hasFile('bannerurl')) {
-        $imagePath = $request->file('bannerurl')->store('uploads', 'public');
-        $data['bannerurl'] = $imagePath;
+            $model = CRUD::getCurrentEntry();
+            if ($model && $model->bannerurl) {
+                Storage::disk('public')->delete($model->bannerurl);
+            }
+        }
 
         $model = CRUD::getCurrentEntry();
-        if ($model && $model->bannerurl) {
-            Storage::disk('public')->delete($model->bannerurl);
-        }
-    }
+        $model->update($data);
 
-    $model = CRUD::getCurrentEntry();
-    $model->update($data);
+        \Alert::success('Coupon updated successfully.')->flash();
 
-    \Alert::success('Coupon updated successfully.')->flash();
-
-    return redirect()->back();
+        return redirect()->back();
     }
 }

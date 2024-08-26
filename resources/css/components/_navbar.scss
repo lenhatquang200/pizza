@@ -53,6 +53,7 @@
                 .btn-order-now {
                     margin-right: 14px;
                     background-color: $primary-color;
+                    font-weight: $primary-font-weight;
                     color: $white;
                     border: none;
                     padding: 12px 22px;
@@ -89,13 +90,13 @@
                     background-color: $primary-color;
                     color: $white;
                     border: none;
-                    padding: 12px 22px;
+                    padding: 10px 14px;
                     border-radius: 7px;
-                    font-size: 14px;
+                    font-size: 14px ;
                     cursor: pointer;
 
                     .address-icon {
-                        margin-right: 7px;
+                        font-size: 1.5rem;
                     }
                     &:hover {
                         text-decoration: none;
