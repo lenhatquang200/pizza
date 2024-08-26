@@ -11,10 +11,6 @@ class MenuController extends Controller
     {
         $menus = Menu::all();
 
-        if ($menus->isEmpty()) {
-            abort(404, 'No menus found.');
-        }
-
         $menus = $menus->map(function ($menu) {
             return [
                 'pdf_url' => $menu->pdf_path ? url('storage/' . $menu->pdf_path) : null,

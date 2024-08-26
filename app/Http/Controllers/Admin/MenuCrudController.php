@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\MenuRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class MenuCrudController extends CrudController
@@ -23,21 +24,20 @@ class MenuCrudController extends CrudController
 
     protected function setupListOperation()
     {
-    CRUD::column('pdf_or_image')
-        ->type('custom_html')
-        ->label('PDF/Image')
-        ->limit(50)
-        ->value(function ($entry) {
-            if ($entry->pdf_path) {
-                return '<a href="/storage/' . $entry->pdf_path . '" target="_blank">Link PDF</a>';
-            }
+        CRUD::column('pdf_or_image')
+            ->type('custom_html')
+            ->label('PDF/Image')
+            ->value(function ($entry) {
+                if ($entry->pdf_path) {
+                    return '<a href="/storage/' . $entry->pdf_path . '" target="_blank">Link PDF</a>';
+                }
 
-            if ($entry->image_path) {
-                return '<img src="/storage/' . $entry->image_path . '" style="height: 60px; width: auto;" />';
-            }
+                if ($entry->image_path) {
+                    return '<img src="/storage/' . $entry->image_path . '" style="height: 60px; width: auto;" />';
+                }
 
-            return 'No PDF or Image available';
-        });
+                return 'No PDF or Image available';
+            });
     }
 
     protected function setupCreateOperation()
@@ -47,7 +47,7 @@ class MenuCrudController extends CrudController
         CRUD::field('files')
             ->type('upload_multiple')
             ->upload('public')
-            ->label('Upload File (PDF or Image)');
+            ->label('Upload Files (PDF or Image)');
     }
 
     protected function setupUpdateOperation()
@@ -55,77 +55,71 @@ class MenuCrudController extends CrudController
         $this->setupCreateOperation();
     }
 
-    public function store(\Illuminate\Http\Request $request)
+    public function store(Request $request)
     {
         $this->validate($request, [
-            'files[]' => 'nullable|file|mimes:pdf,jpeg,png,jpg|max:20480',
+            'files.*' => 'nullable|file|mimes:pdf,jpeg,png,jpg|max:20480',
         ]);
 
-        //dd($request->hasFile('files'),$request->files);
-
-        $file = $request->file('files');
+        $files = $request->file('files');
 
         $pdfPath = null;
         $imagePath = null;
 
-        if ($file) {
-            $fileType = $file->getClientOriginalExtension();
-            $filePath = $file->store('uploads', 'public');
+        if ($files) {
+            foreach ($files as $file) {
+                $fileType = $file->getClientOriginalExtension();
+                $filePath = $file->store('uploads', 'public');
 
-            if ($fileType === 'pdf') {
-                $pdfPath = $filePath;
-            } else {
-                $imagePath = $filePath;
+                if ($fileType === 'pdf') {
+                    $pdfPath = $filePath;
+                } else {
+                    $imagePath = $filePath;
+                }
+
+                // Save a new Menu record for each file
+                CRUD::create([
+                    'pdf_path' => $fileType === 'pdf' ? $pdfPath : null,
+                    'image_path' => $fileType !== 'pdf' ? $imagePath : null,
+                ]);
             }
         }
-
-        $data = [
-            'pdf_path' => $pdfPath,
-            'image_path' => $imagePath,
-        ];
-
-        CRUD::create($data);
 
         \Alert::success('Menu created successfully.')->flash();
 
         return redirect()->back();
     }
 
-    public function update(\Illuminate\Http\Request $request)
+    public function update(Request $request)
     {
         $this->validate($request, [
-            'files' => 'nullable|file|mimes:pdf,jpeg,png,jpg|max:20480',
+            'files.*' => 'nullable|file|mimes:pdf,jpeg,png,jpg|max:20480',
         ]);
 
-        $data = $request->except(['files']);
+        $files = $request->file('files');
 
-        // Get the uploaded file
-        $file = $request->file('files');
-
-        // Initialize variables to store paths
         $pdfPath = null;
         $imagePath = null;
 
-        // Check if a file was uploaded
-        if ($file) {
-            $fileType = $file->getClientOriginalExtension();
-            $filePath = $file->store('uploads', 'public');
+        if ($files) {
+            foreach ($files as $file) {
+                $fileType = $file->getClientOriginalExtension();
+                $filePath = $file->store('uploads', 'public');
 
-            // Separate PDFs and images
-            if ($fileType === 'pdf') {
-                $pdfPath = $filePath;
-            } else {
-                $imagePath = $filePath;
+                if ($fileType === 'pdf') {
+                    $pdfPath = $filePath;
+                } else {
+                    $imagePath = $filePath;
+                }
+
+                // Update the Menu record with the file paths
+                CRUD::update($request->route('id'), [
+                    'pdf_path' => $fileType === 'pdf' ? $pdfPath : null,
+                    'image_path' => $fileType !== 'pdf' ? $imagePath : null,
+                ]);
             }
         }
 
-        // Update the record with the file paths
-        $data['pdf_path'] = $pdfPath;
-        $data['image_path'] = $imagePath;
-
-        CRUD::update($data);
-
-        // Flash success message to the user
         \Alert::success('Menu updated successfully.')->flash();
 
         return redirect()->back();

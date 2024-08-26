@@ -30,6 +30,10 @@ class BlogCrudController extends CrudController
         CRUD::setModel(\App\Models\Blog::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/blog');
         CRUD::setEntityNameStrings('blog', 'blogs');
+        $this->crud->setOperationSetting('menu', [
+            'name' => 'Blogs',
+            'icon' => 'fa fa-blog', 
+        ]);
     }
 
     /**
@@ -41,7 +45,6 @@ class BlogCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('title');
-        CRUD::column('content');
         $this->crud->addColumn([
             'name' => 'image',
             'label' => 'Image',

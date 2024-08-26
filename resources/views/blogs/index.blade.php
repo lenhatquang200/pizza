@@ -5,7 +5,7 @@
     <h1 class="h1-custom">Blogs List</h1>
     <div class="row blog-list">
         @if ($blogs->isEmpty())
-            <p class="col-12">No Content</p>
+        @include('partials.no-content')
         @else
             @foreach ($blogs as $blog)
                 <div class="col-lg-12 col-md-12 col-sm-12 blog-item">

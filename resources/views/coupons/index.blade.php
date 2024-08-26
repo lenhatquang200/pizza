@@ -15,7 +15,7 @@
             @endforeach
         </div>
     @else
-        <p>No Coupons</p>
+    @include('partials.no-content')
     @endif
 </div>
 @endsection

@@ -1,7 +1,7 @@
 @if($coupons->isNotEmpty())
     <div id="{{ $sliderId }}" class="slick-slider">
         @foreach ($coupons as $coupon)
-            <div class="carousel-slide">    
+            <div class="carousel-slide">
                 <div class="text-overlay-wrapper">
                     <img src="{{ asset('storage/' . $coupon->bannerurl) }}" alt="Coupon Image {{ $loop->index + 1 }}">
 
@@ -29,5 +29,5 @@
         @endforeach
     </div>
 @else
-    <p>No Images</p>
+@include('partials.no-content')
 @endif

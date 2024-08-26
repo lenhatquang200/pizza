@@ -61,7 +61,7 @@
                     ])
                     @endcomponent
                 @else
-                    <p>No coupons found.</p>
+                @include('partials.no-content')
                 @endif
             </div>
         </div>

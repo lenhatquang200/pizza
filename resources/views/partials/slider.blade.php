@@ -33,6 +33,5 @@
         @endforeach
     </div>
 @else
-    <p>No Images</p>
-    {{-- {{ $noImagesMessage }} --}}
+@include('partials.no-content')
 @endif
