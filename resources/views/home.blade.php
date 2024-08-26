@@ -9,7 +9,7 @@
         'customOverlay' => false,
         'customText' => '',
         'altText' => 'Menu Image {{ $loop->index + 1 }}',
-        'overlayTextprimary' => '🍕 Let Us Cater Your Next Party ! 🍕',
+        'overlayTextprimary' => ' ',
         'overlayTextsecondary' => '',
         'buttonUrl' => '#',
         'buttonText' => 'View Our Menu',
@@ -23,13 +23,13 @@
                 @component('partials.slider', [
                     'images' => $bannerHomeImages,
                     'sliderId' => 'home-image-slider',
-                    'customOverlay' => true,
-                    'customText' => 'DAILY DEAL',
+                    'customOverlay' => false,
+                    'customText' => ' ',
                     'altText' => 'Home Image {{ $loop->index + 1 }}',
-                    'overlayTextprimary' => '10% OFF',
-                    'overlayTextsecondary' => 'ANY ORDER',
+                    'overlayTextprimary' => ' ',
+                    'overlayTextsecondary' => ' ',
                     'buttonUrl' => '#',
-                    'buttonText' => 'Order Now',
+                    'buttonText' => 'ORDER NOW',
                 ])
                 @endcomponent
             </div>
@@ -39,25 +39,25 @@
                     @component('partials.coupons', [
                         'coupons' => $coupons->take(1),
                         'sliderId' => 'coupons1',
-                        'overlayTextprimary' => '$6.99',
-                        'overlayTextsecondary' => 'CHOOSE ANY 2 OR MORE',
+                        'overlayTextprimary' => '',
+                        'overlayTextsecondary' => '',
                         'buttonUrl' => '#',
-                        'buttonText' => 'Order Now',
-                        'customOverlay' => true,
-                        'customText' => 'DAILY DEAL',
-                        'noCouponsMessage' => 'No coupons found.'
+                        'buttonText' => 'ORDER NOW',
+                        'customOverlay' => false,
+                        'customText' => '',
+                        'noCouponsMessage' => ''
                     ])
                     @endcomponent
                     @component('partials.coupons', [
-                        'coupons' => $coupons->slice(1, 1), // Lấy phần tử thứ hai nếu có
+                        'coupons' => $coupons->slice(1, 1),
                         'sliderId' => 'coupons2',
-                        'overlayTextprimary' => '$6.99',
-                        'overlayTextsecondary' => 'CHOOSE ANY 2 OR MORE',
+                        'overlayTextprimary' => ' ',
+                        'overlayTextsecondary' => ' ',
                         'buttonUrl' => '#',
-                        'buttonText' => 'Shop Now',
-                        'customOverlay' => true,
-                        'customText' => 'COMBO DEAL',
-                        'noCouponsMessage' => 'No coupons found.'
+                        'buttonText' => 'ORDER NOW',
+                        'customOverlay' => false,
+                        'customText' => '',
+                        'noCouponsMessage' => ''
                     ])
                     @endcomponent
                 @else

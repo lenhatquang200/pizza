@@ -19,7 +19,7 @@
             border: 1px solid $black-white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 4px;
-            padding: 16px;
+            padding:16px;
             margin-bottom: 16px; // Add spacing between blog items
             transition: box-shadow 0.3s ease;
 
@@ -43,24 +43,20 @@
                 }
 
                 .blog-content-container {
-                    padding: 16px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-
+                    padding: 0 16px;
                     a {
                         text-decoration: none;
                         color: $black;
                         font-size: $secondary-font-size;
-
-                        &:hover {
-                            color: $secondary-color;
-                        }
                     }
 
                     .blog-title {
                         font-size: 1.25rem;
                         margin-bottom: 0.5rem;
+
+                        &:hover {
+                            color: $secondary-color;
+                        }
                     }
 
                     .blog-date {
@@ -72,6 +68,7 @@
                         font-size: 1rem;
                         color: $black;
                     }
+
                 }
             }
         }

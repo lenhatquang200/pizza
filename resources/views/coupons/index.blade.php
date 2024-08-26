@@ -10,7 +10,7 @@
                         <img src="{{ asset('storage/' . $coupon->bannerurl) }}" alt="Coupon Image {{ $loop->index + 1 }}">
                     </a>
 
-                    <a href="{{ $coupon->url }}" class="btn-view-menu">View More</a>
+                    <a href="{{ $coupon->url }}" class="btn-view-menu">ORDER NOW</a>
                 </div>
             @endforeach
         </div>
