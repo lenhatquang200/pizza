@@ -1,12 +1,11 @@
 .navbar_menu {
     background-color: $primary-color;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 0 2vw;
+    padding: 0 14px;
     position: relative;
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
 
     .nav_list {
         display: flex;
@@ -20,35 +19,22 @@
         .nav_item {
             display: flex;
             align-items: center;
-            margin: 0 2vw;
+            justify-content: center;
+            width: 183%;
+            height: 100%;
 
             .nav_link {
                 margin: 0;
                 text-decoration: none;
                 color: $white;
-                font-size: 1.2vw;
-                padding: 2vw 0;
+                font-size: $primary-font-size;
+                padding: 24px 0;
                 transition: color 0.3s ease, background-color 0.3s ease;
-
-                &:hover {
-                    color: $white;
-                    background-color: $secondary-color;
-                }
             }
-        }
-    }
-
-    .hamburger-menu {
-        display: none;
-        align-items: center;
-        cursor: pointer;
-        background-color: $primary-color;
-        padding: 1vw;
-        border-radius: 0.5vw;
-
-        .hamburger-icon {
-            font-size: 2vw;
-            color: $white;
+            &:hover {
+                color: $white;
+                background-color: $secondary-color;
+            }
         }
     }
 
@@ -59,54 +45,22 @@
 
         .hamburger-menu {
             display: flex;
+            align-items: center;
+            cursor: pointer;
+            background-color: $primary-color;
+            padding: 14px;
+            border-radius: 7px;
+            .hamburger-icon {
+                font-size: $h3-font-size;
+                color: $white;
+            }
         }
     }
-}
 
-.navbar_menu_mobile {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100%;
-    background-color: $white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 2vw;
-    z-index: 1000;
-    overflow-y: auto;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-
-    &.show {
-        transform: translateX(0);
-    }
-
-    .nav_list {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        height: 100%;
-
-        .nav_item {
-            margin: 2vw 0;
-
-            .nav_link {
-                text-decoration: none;
-                color: $primary-color;
-                font-size: 1.25vw;
-                padding: 1vw;
-                border-radius: 0.5vw;
-                transition: color 0.3s ease, background-color 0.3s ease;
-
-                &:hover {
-                    color: $white;
-                    background-color: $secondary-color;
-                }
-            }
+    @media (min-width: 769px) {
+        .hamburger-menu {
+            display: none;
+            min-height: 8vh;
         }
     }
 }

@@ -40,29 +40,27 @@ class CouponCrudController extends CrudController
      * @return void
      */
 
-    protected function setupListOperation()
-    {
-        Log::info('Setting up list operation for coupons');
+     protected function setupListOperation()
+     {
+         Log::info('Setting up list operation for coupons');
 
-        CRUD::column('bannerurl')->label('Banner URL')->type('text');
-        CRUD::column('validfrom')->label('Valid From')->type('datetime');
-        CRUD::column('validto')->label('Valid To')->type('datetime');
-        CRUD::column('displayfrom')->label('Display From')->type('datetime');
-        CRUD::column('displayto')->label('Display To')->type('datetime');
-        CRUD::column('isfeatured')->label('Featured')->type('boolean');
+         // Display image directly
+         CRUD::column('bannerurl')
+             ->label('Banner')
+             ->type('image') // Set the column type to 'image'
+             ->prefix('storage/') // Prefix path for images
+             ->height('60px') // Optional: Set the height of the image
+             ->width('auto'); // Optional: Set the width of the image
 
+         CRUD::column('validfrom')->label('Valid From')->type('datetime');
+         CRUD::column('validto')->label('Valid To')->type('datetime');
+         CRUD::column('displayfrom')->label('Display From')->type('datetime');
+         CRUD::column('displayto')->label('Display To')->type('datetime');
+         CRUD::column('isfeatured')->label('Featured')->type('boolean');
 
-         // Using dd() to check the data
-        // $entries = CRUD::getEntries();
-        // dd($entries);  // Dump and die the entries
-
-        // // Alternatively, if CRUD::getEntries() does not work, you can directly dump data from the model
-        // $data = \App\Models\Coupon::all();  // Assuming Coupon is your model
-        // dd($data);  // Dump and die the data
-        Log::info('Data in list operation:', ['data' => CRUD::getEntries()]);
-        Log::info('Data from CRUD:', ['data' => $this->crud->getEntries()]);
-
-    }
+         Log::info('Data in list operation:', ['data' => CRUD::getEntries()]);
+         Log::info('Data from CRUD:', ['data' => $this->crud->getEntries()]);
+     }
 
     /**
      * Define what happens when the Create operation is loaded.
@@ -76,11 +74,23 @@ class CouponCrudController extends CrudController
         CRUD::addFields([
             [
                 'name' => 'bannerurl',
-                'label' => 'Banner URL',
+                'label' => 'Banner',
                 'type' => 'upload',
                 'upload' => true,
                 'disk' => 'public',
-                'prefix' => 'uploads/',
+                'prefix' => '',
+            ],
+
+            [
+                'name' => 'couponcode',
+                'label' => 'Coupon Code',
+                'type' => 'text',
+            ],
+
+            [
+                'name' => 'url',
+                'label' => 'Coupon URL',
+                'type' => 'text',
             ],
 
             [

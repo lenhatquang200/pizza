@@ -6,7 +6,10 @@
                     @isset($overlayBackground)
                         <div class="overlay-background"></div>
                     @endisset
-                    <img src="{{ asset('storage/' . $image->imageurl) }}" alt="{{ $altText }}">
+
+                    <a href="{{ $image->url ?? '#' }}">
+                        <img src="{{ asset('storage/' . $image->imageurl) }}" alt="{{ $altText }}">
+                    </a>
 
                     @if($overlayTextprimary)
                         <div class="text-overlay-container">
@@ -15,7 +18,7 @@
                                 <div class="text-overlay-secondary">{{ $overlayTextsecondary }}</div>
                             @endif
                             @isset($buttonUrl)
-                                <a href="{{ $buttonUrl }}" class="btn-view-menu">{{ $buttonText ?? 'View Our Menu' }}</a>
+                              <a href="{{ $image->url ?? '#' }}" class="btn-view-menu">{{ $buttonText ?? 'View Our Menu' }}</a>
                             @endisset
                         </div>
                     @endif
@@ -30,5 +33,6 @@
         @endforeach
     </div>
 @else
-    <p>{{ $noImagesMessage }}</p>
+    <p>No Images</p>
+    {{-- {{ $noImagesMessage }} --}}
 @endif

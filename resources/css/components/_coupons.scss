@@ -1,0 +1,86 @@
+.coupons-container {
+    .slick-slider {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        overflow: hidden;
+
+        .carousel-slide {
+            flex: 1 0 48%;
+            box-sizing: border-box;
+            max-height: 300px;
+
+            .carousel-link {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                img {
+                    object-fit: cover;
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    border-radius: 8px;
+                }
+            }
+
+            .btn-view-menu {
+                position: absolute;
+                bottom: 10px;
+                left: 10px;
+                background-color: $primary-color;
+                color: $white;
+                text-decoration: none;
+                padding: 8px 16px;
+                border-radius: 4px;
+                box-shadow: 2px 2px 0 $secondary-color;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                z-index: 10;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: darken($primary-color, 10%);
+                    box-shadow: 4px 4px 0 $primary-color;
+                }
+            }
+        }
+    }
+
+    p {
+        text-align: center;
+        font-size: 16px;
+        color: $primary-color;
+        padding: 20px;
+        margin: 0;
+    }
+
+    @media (max-width: 1200px) {
+        .slick-slider {
+            .carousel-slide {
+                flex: 1 0 48%;
+            }
+        }
+    }
+
+    @media (max-width: 992px) {
+        .slick-slider {
+            .carousel-slide {
+                flex: 1 0 48%;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .slick-slider {
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .carousel-slide {
+            flex: 1 0 100%;
+            max-height: 300px;
+        }
+    }
+}

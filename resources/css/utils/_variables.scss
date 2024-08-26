@@ -1,9 +1,4 @@
 // resources/css/utils/_variables.scss
-$font-stack: 'Helvetica Neue', Arial, sans-serif;
-$heading-font-family: 'Georgia', serif;
-$heading-font-weight: 700;
-$primary-font-weight: 600;
-$heading-color: #333333;
 
 $font-size-h1: 2.5rem;
 $font-size-h2: 2rem;
@@ -40,6 +35,12 @@ $font-size-h4-xs: 0.875rem;
 $font-size-h5-xs: 0.75rem;
 $font-size-h6-xs: 0.625rem;
 
+$font-stack: 'Helvetica Neue', Arial, sans-serif;
+$heading-font-family: 'Georgia', serif;
+$heading-font-weight: 700;
+$primary-font-weight: 600;
+$heading-color: #333333;
+
 $text-color: #212529;
 $link-color: #3490dc;
 $blockquote-border-color: #e0e0e0;
@@ -50,10 +51,54 @@ $primary-color: #FA812A;
 $secondary-color: #EB6200;
 $white: #ffffff;
 $black: #000000;
+$black-white:#ddd;
 $color-background: #efefef;
-$text-shadow: 0.2vw 0.2vw 0 $secondary-color;
-$h2-font-size: 4.2vw;
-$primary-font-size: 1.2vw;
-$secondary-font-size: 1.52vw;
-$h3-font-size: 2vw;
-$h6-font-size: 1vw;
+$text-shadow: 3px 3px 0 $secondary-color;
+// Default font sizes (e.g., for desktop)
+$h1-font-size: 3.75rem; // ~60px
+$h2-font-size: 2.5rem;  // ~40px
+$h3-font-size: 1.8125rem; // ~29px
+$h6-font-size: 0.875rem; // ~14px
+$primary-font-size: 0.9375rem; // ~15px
+$secondary-font-size: 1.25rem; // ~20px
+
+// Responsive adjustments
+@media (max-width: 1200px) {
+  $h1-font-size: 3rem; // ~48px
+  $h2-font-size: 2rem; // ~32px
+  $h3-font-size: 1.5rem; // ~24px
+  $h6-font-size: 0.8125rem; // ~13px
+  $primary-font-size: 0.875rem; // ~14px
+  $secondary-font-size: 1.125rem; // ~18px
+}
+
+@media (max-width: 768px) {
+  $h1-font-size: 2.5rem; // ~40px
+  $h2-font-size: 1.75rem; // ~28px
+  $h3-font-size: 1.375rem; // ~22px
+  $h6-font-size: 0.75rem; // ~12px
+  $primary-font-size: 0.8125rem; // ~13px
+  $secondary-font-size: 1rem; // ~16px
+}
+
+@media (max-width: 480px) {
+  $h1-font-size: 2rem; // ~32px
+  $h2-font-size: 1.5rem; // ~24px
+  $h3-font-size: 1.125rem; // ~18px
+  $h6-font-size: 0.6875rem; // ~11px
+  $primary-font-size: 0.75rem; // ~12px
+  $secondary-font-size: 0.875rem; // ~14px
+}
+
+// Usage example:
+h1 {
+  font-size: $h1-font-size;
+}
+
+h2 {
+  font-size: $h2-font-size;
+}
+
+// And so on...
+
+

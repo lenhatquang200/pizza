@@ -1,11 +1,8 @@
 @if($coupons->isNotEmpty())
     <div id="{{ $sliderId }}" class="slick-slider">
-        @foreach ($coupons->take(2) as $coupon)
-            <div class="carousel-slide">
+        @foreach ($coupons as $coupon)
+            <div class="carousel-slide">    
                 <div class="text-overlay-wrapper">
-                    @if($overlayBackground)
-                        <div class="overlay-background"></div>
-                    @endif
                     <img src="{{ asset('storage/' . $coupon->bannerurl) }}" alt="Coupon Image {{ $loop->index + 1 }}">
 
                     @if($overlayTextprimary || $overlayTextsecondary || $buttonUrl)
@@ -32,5 +29,5 @@
         @endforeach
     </div>
 @else
-    <p>{{ $noCouponsMessage }}</p>
+    <p>No Images</p>
 @endif

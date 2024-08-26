@@ -10,9 +10,9 @@ class Image extends Model
     use CrudTrait;
     use HasFactory;
 
-    protected $table = 'images';
+    protected $table = 'banners';
 
-    protected $fillable = ['pagename', 'imagetype', 'imageurl'];
+    protected $fillable = ['url', 'imagetype', 'imageurl'];
     public$timestamps = false;
 }
 

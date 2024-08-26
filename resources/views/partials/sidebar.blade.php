@@ -1,34 +1,19 @@
-<!-- resources/views/admin/sidebar.blade.php -->
-<aside class="sidebar border-end" id="adminSidebar">
-    <div class="sidebar-content" id="sidebarMenu">
-        <button class="btn-close-sidebar" id="closeSidebar" aria-label="Close Sidebar">
-            <i class="icon-close"></i>
-        </button>
-        {{-- <ul class="nav flex-column">
-            <li class="nav-item">
-                <a href="{{ url('/admin') }}" class="nav-link {{ request()->is('admin') ? 'active' : '' }}">
-                    Dashboard
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ url('/admin/users') }}" class="nav-link {{ request()->is('admin/users') ? 'active' : '' }}">
-                    Users
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ url('/admin/settings') }}" class="nav-link {{ request()->is('admin/settings') ? 'active' : '' }}">
-                    Settings
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ url('/admin/uploadsphoto') }}" class="nav-link {{ request()->is('admin/uploadsphoto') ? 'active' : '' }}">
-                    Uploads
-                </a>
-            </li>
-        </ul> --}}
+ <!-- Sidebar -->
+ <div class="navbar_menu_mobile" id="sidebarMenu">
+    <div class="close-btn" id="closeBtn">
+        <i class="fas fa-times"></i>
     </div>
-</aside>
-
-<button class="sidebar-toggle-btn" id="sidebarToggle" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle sidebar">
-    <i class="icon-menu"></i>
-</button>
+    <a class="navbar-brand" href="/">
+        <img src="{{ $settings['brand_logo']->image_url ?? asset('storage/images/logo.png') }}" alt="Logo">
+    </a>
+    <ul class="nav_list">
+        <li class="nav_item"><a href="/" class="nav_link">Home</a></li>
+        <li class="nav_item"><a href="/menu" class="nav_link">Menu</a></li>
+        <li class="nav_item"><a href="https://piazzaorsillo.pdqonlineordering.com/Titlepage.aspx" class="nav_link">Order Online</a></li>
+        <li class="nav_item"><a href="/blogs" class="nav_link">Blogs</a></li>
+        <li class="nav_item"><a href="/coupons" class="nav_link">Coupons</a></li>
+        <li class="nav_item"><a href="/reviews" class="nav_link">Reviews</a></li>
+        <li class="nav_item"><a href="/about-us" class="nav_link">About Us</a></li>
+        <li class="nav_item"><a href="/contact-us" class="nav_link">Contact Us</a></li>
+    </ul>
+</div>

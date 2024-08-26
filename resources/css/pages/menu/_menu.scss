@@ -1,0 +1,46 @@
+/* Style for the PDF viewer */
+.menu-pdf-container {
+    padding: 10px;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+
+    #pdf-viewer {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+
+        canvas {
+            display: block;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+/* Style for the image container */
+.menu-image-container {
+    width: 100%;
+    display: flex;
+    justify-content: center; // Center the image horizontally
+    align-items: center;    // Center the image vertically if needed
+    text-align: center;     // Center-align text within the container
+
+    img {
+        width: 86%;          // Ensure the image scales to 86% of its container
+        height: auto;        // Maintain aspect ratio
+        transition: none;    // Disable transition effects
+        transform: none;     // Ensure no scaling or transformation on hover
+    }
+}

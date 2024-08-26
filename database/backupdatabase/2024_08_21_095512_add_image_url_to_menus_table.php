@@ -9,19 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('locations', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('menus', function (Blueprint $table) {
+            $table->string('image_url')->nullable();
         });
     }
 
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('locations');
+        Schema::table('menus', function (Blueprint $table) {
+            $table->dropColumn('image_url');
+        });
     }
 };

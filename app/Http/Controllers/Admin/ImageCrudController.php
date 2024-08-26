@@ -29,8 +29,8 @@ class ImageCrudController extends CrudController
     public function setup()
     {
         CRUD::setModel(\App\Models\Image::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/image');
-        CRUD::setEntityNameStrings('image', 'images');
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/banner');
+        CRUD::setEntityNameStrings('banner', 'banners');
     }
 
     /**
@@ -41,14 +41,27 @@ class ImageCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        $this->crud->addColumn([
+            'name' => 'imagetype',
+            'label' => 'Position',
+            'type' => 'text',
+        ]);
 
-        /**
-         * Columns can be defined using the fluent syntax:
-         * - CRUD::column('price')->type('number');
-         */
+        $this->crud->addColumn([
+            'name' => 'url',
+            'label' => 'Direct Url',
+            'type' => 'text',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'imageurl',
+            'label' => 'Banner',
+            'type' => 'image',
+            'prefix' => 'storage/',
+            'height' => '60px',
+            'width' => 'auto',
+        ]);
     }
-
     /**
      * Define what happens when the Create operation is loaded.
      *
@@ -64,30 +77,28 @@ class ImageCrudController extends CrudController
         Log::info('Adding fields for Image model.');
 
         CRUD::addField([
-            'name' => 'pagename',
-            'label' => 'Page Name',
-            'type' => 'select_from_array',
-            'options' => \App\Enums\PageNameEnum::all(), // Đây là mảng các giá trị
-            'allows_null' => false,
-            'default' => \App\Enums\PageNameEnum::HOME,
-        ]);
-
-        CRUD::addField([
             'name' => 'imagetype',
-            'label' => 'Image Type',
+            'label' => 'Positon',
             'type' => 'select_from_array',
             'options' => \App\Enums\ImageTypeEnum::all(),
             'allows_null' => false,
             'default' => \App\Enums\ImageTypeEnum::BANNERHOME,
         ]);
 
+
+        CRUD::addField([
+            'name' => 'url',
+            'label' => 'Direct Url',
+            'type' => 'text',
+        ]);
+
         CRUD::addField([
             'name' => 'imageurl',
-            'label' => 'Image URL',
+            'label' => 'Banner',
             'type' => 'upload',
             'upload' => true,
             'disk' => 'public',
-            'prefix' => 'uploads/',
+            'prefix' => '',
         ]);
 
         Log::info('Create Operation setup completed for ImageCrudController.');
@@ -117,7 +128,7 @@ class ImageCrudController extends CrudController
         }
 
         // Ensure 'pagename' and 'imagetype' are text values
-        $data['pagename'] = \App\Enums\PageNameEnum::getName($data['pagename']);
+        $data['url'] = \App\Enums\PageNameEnum::getName($data['url']);
         $data['imagetype'] = \App\Enums\ImageTypeEnum::getName($data['imagetype']);
 
         // Save data
@@ -146,8 +157,7 @@ class ImageCrudController extends CrudController
             }
         }
 
-        // Ensure 'pagename' and 'imagetype' are text values
-        $data['pagename'] = \App\Enums\PageNameEnum::getName($data['pagename']);
+        $data['url'] = \App\Enums\PageNameEnum::getName($data['url']);
         $data['imagetype'] = \App\Enums\ImageTypeEnum::getName($data['imagetype']);
 
         $model = CRUD::getCurrentEntry();

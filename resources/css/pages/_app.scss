@@ -1,6 +1,5 @@
 /* container.scss */
 body {
-    margin-bottom: 0 !important;
     .container {
         width: 100%;
         max-width: 1140px;
@@ -28,10 +27,11 @@ body {
 
     /* container-fluid.scss */
     .container-fluid {
+        min-height: 60vh;
         background-color: $color-background;
         width: 100%;
         padding-left: 0;
         padding-right: 0;
     }
-
 }
+

@@ -11,9 +11,10 @@ class Coupon extends Model
     use CrudTrait;
     use HasFactory;
 
-    // Các trường được phép gán hàng loạt
     protected $fillable = [
         'bannerurl',
+        'url',
+        'couponcode',
         'validfrom',
         'validto',
         'displayfrom',

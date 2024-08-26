@@ -1,0 +1,39 @@
+.blog-container {
+    .h1-custom {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+
+        @media (max-width: 768px) {
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 576px) {
+            font-size: 1.25rem;
+        }
+    }
+
+    .text-custom {
+        margin: 0;
+        margin-bottom: 2rem;
+        text-align: left;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center; // Center content horizontally
+
+        .blog-image-detail {
+            width: 25%; // Make the image take 100% of the width
+            height: auto; // Maintain aspect ratio
+            max-height: 500px; // Optional: set a max height for large images
+            object-fit: cover; // Ensure the image covers the area without distortion
+            margin-bottom: 1rem; // Space between image and content
+        }
+    }
+
+    .blog-metadata {
+        margin-top: 1rem;
+        text-align: left;
+        color: #777;
+        font-size: 0.875rem;
+    }
+}
