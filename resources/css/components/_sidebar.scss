@@ -7,7 +7,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 10px;
     z-index: 1000;
-    overflow-y: auto;
+    overflow-y: hidden;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
     background-color: $primary-color;
@@ -25,7 +25,7 @@
       top: 0.1vw;
       right: 1vw;
       cursor: pointer;
-      font-size: $h2-font-size;
+      font-size: $secondary-font-size;
       color: $white;
       transition: color 0.3s ease;
 

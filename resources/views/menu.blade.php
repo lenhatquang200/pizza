@@ -13,15 +13,14 @@
         @if ($hasContent)
             @foreach ($menus as $menu)
                 <div class="menu-item">
-                    @if (!empty($menu['image_path']))
-                        <div class="menu-image-container">
-                            <img src="{{ $menu['image_path'] }}" alt="Menu Image" class="img-fluid">
-                        </div>
-                    @endif
-
                     @if (!empty($menu['pdf_url']))
                         <div id="pdf-viewer-{{ $loop->index }}" class="menu-pdf-container" data-pdf-url="{{ $menu['pdf_url'] }}"></div>
                     @endif
+                    @if (!empty($menu['image_path']))
+                    <div class="menu-image-container">
+                        <img src="{{ $menu['image_path'] }}" alt="Menu Image" class="img-fluid">
+                    </div>
+                @endif
                 </div>
             @endforeach
         @else
