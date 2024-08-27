@@ -1,7 +1,7 @@
 <div class="container">
     <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="/">
-            <img src="{{ $settings['brand_logo']->image_url ?? asset('storage/default/logo.png') }}" alt="Logo">
+            <img src="{{ $settings['brand_logo']->image_url ?? asset('storage/default/logo.png') }}">
         </a>
         <div class="navbar-collapse">
             <div class="navbar-info">
