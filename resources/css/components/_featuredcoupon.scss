@@ -24,7 +24,7 @@
         transform: translateY(-10%);
 
         img {
-            border-radius: 3px;
+            border-radius: 5px;
             min-width: 100%;
             height: auto;
             display: block;
@@ -73,7 +73,7 @@
 
     .close--overlay_btn {
         position: absolute;
-        top: 4%;
+        top: 3%;
         right: 2%;
         font-size: $h2-font-size;
         width: 40px;
