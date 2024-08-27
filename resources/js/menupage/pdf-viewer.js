@@ -1,12 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-    function getScale(containerWidth) {
-        if (containerWidth > 1200) {
-            return 1;
-        } else if (containerWidth > 800) {
-            return 0.8;
-        } else {
-            return 0.25;
-        }
+    function getScale() {
+        return 1;
     }
 
     function renderPDF(pdfUrl, containerId) {
