@@ -5,54 +5,63 @@
     width: 40%;
     height: 100vh;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 29px;
+    padding: 10px;
     z-index: 1000;
-    overflow-y: auto;
+    overflow-y: hidden;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
     background-color: $primary-color;
+
     &.show {
-        transform: translateX(0);
+      transform: translateX(0);
     }
+
+    img {
+      padding: 10px;
+    }
+
     .close-btn {
-        position: absolute;
-        top: 0.1vw;
-        right: 1vw;
-        cursor: pointer;
-        font-size: $h2-font-size;
-        color: $white;
-        transition: color 0.3s ease;
+      position: absolute;
+      top: 0.1vw;
+      right: 1vw;
+      cursor: pointer;
+      font-size: $secondary-font-size;
+      color: $white;
+      transition: color 0.3s ease;
 
-        &:hover {
-            color: $secondary-color;
-        }
+      &:hover {
+        color: $secondary-color;
+      }
     }
+
     .nav_list {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        list-style: none;
-        padding: 0;
-        margin-top: 2rem;
-        height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      list-style: none;
+      padding: 0;
+      margin-top: 2rem;
+      height: 100%;
 
-        .nav_item {
-            margin: 1vw 0;
-            width: 80%;
-            display: flex;
-            align-items: center;
-            .nav_link {
-                text-decoration: none;
-                color: $white;
-                font-size: $primary-font-size;
-                padding: 1vw;
-                border-radius: 0.5vw;
-                transition: color 0.3s ease, background-color 0.3s ease
-            }
-            &:hover {
-                color: $white;
-                background-color: $secondary-color;
-            }
+      .nav_item {
+        margin: 1vw 0;
+        width: 100%;
+        display: flex;
+
+        .nav_link {
+          width: 100%;
+          text-decoration: none;
+          color: $white;
+          font-size: $primary-font-size;
+          padding: 1vw;
+          border-radius: 0.5vw;
+          transition: color 0.3s ease, background-color 0.3s ease;
+
+          &:hover {
+            background-color: $secondary-color;
+            color: $white;
+          }
         }
+      }
     }
-}
+  }

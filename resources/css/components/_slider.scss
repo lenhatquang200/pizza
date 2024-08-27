@@ -1,7 +1,3 @@
-.container {
-    padding: 0 15px;
-    overflow: hidden;
-}
 .slick-slider {
     position: relative;
     height: auto;
@@ -48,17 +44,10 @@
             background-color: rgba(0, 0, 0, 0.7);
         }
     }
-
-    .slick-prev {
-        left: 10px;
-    }
-
-    .slick-next {
-        right: 10px;
-    }
 }
 
 #menu-image-slider {
+    margin:10px 0;
     .carousel-slide {
         .text-overlay-wrapper {
             .text-overlay-container {
@@ -75,7 +64,6 @@
                     pointer-events: none;
                     text-align: center;
                     width: 100%;
-                    padding: 0 16px;
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -116,94 +104,97 @@
     }
 }
 
-#home-image-slider {
-    .carousel-slide {
-        display: flex;
-        justify-content: left;
+.container-home{
+    overflow: hidden;
+    #home-image-slider {
+        .carousel-slide {
+            display: flex;
+            justify-content: left;
 
-        .text-overlay-wrapper {
-            position: relative;
-            width: 100%;
-            height: auto;
-
-            img {
-                margin: 16px 0;
-                width: 98%;
-                height: auto;
-                aspect-ratio: 1 / 1;
-                object-fit: cover;
-            }
-
-            .custom-overlay {
-                position: absolute;
-                top: 6%;
-                left: 6%;
-                padding: 0;
-                z-index: 10;
-                width: 118px;
-                height: 23px;
-                background-color: $white;
-                display: flex;
-                align-items: flex-start;
-                justify-content: center;
-
-                .custom-text {
-                    font-size: 17px;
-                    font-weight: 600;
-                    color: $primary-color;
-                    text-align: center;
-                    margin: 0;
-                }
-            }
-
-            .text-overlay-primary {
-                position: absolute;
-                top: 10%;
-                left: 6%;
-                color: $white;
-                font-size: $h2-font-size;
-                font-weight: bold;
-                z-index: 10;
-                pointer-events: none;
-                text-align: left;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                text-shadow: $text-shadow;
-            }
-
-            .text-overlay-secondary {
-                position: absolute;
-                top: 28%;
-                left: 6%;
-                color: $white;
-                font-size: $h3-font-size;
-                font-weight: $primary-font-weight;
-                z-index: 10;
-                pointer-events: none;
-                text-align: left;
+            .text-overlay-wrapper {
+                position: relative;
                 width: 100%;
-            }
+                height: auto;
 
-            .btn-view-menu {
-                position: absolute;
-                top: 88%;
-                left: 6%;
-                background-color: $primary-color;
-                color: $white;
-                text-decoration: none;
-                font-size: $secondary-font-size;
-                font-weight: $primary-font-weight;
-                padding: 0 16px;
-                text-shadow: none;
-                box-shadow: 2px 2px 0 $secondary-color;
-                transition: background-color 0.3s ease, box-shadow 0.3s ease;
-                z-index: 10;
-                cursor: pointer;
+                img {
+                    margin: 16px 0;
+                    width: 98%;
+                    height: auto;
+                    aspect-ratio: 1 / 1;
+                    object-fit: cover;
+                }
 
-                &:hover {
-                    background-color: darken($primary-color, 10%);
-                    box-shadow: 6px 6px 0 $primary-color;
+                .custom-overlay {
+                    position: absolute;
+                    top: 6%;
+                    left: 6%;
+                    padding: 0;
+                    z-index: 10;
+                    width: 118px;
+                    height: 23px;
+                    background-color: $white;
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: center;
+
+                    .custom-text {
+                        font-size: 17px;
+                        font-weight: 600;
+                        color: $primary-color;
+                        text-align: center;
+                        margin: 0;
+                    }
+                }
+
+                .text-overlay-primary {
+                    position: absolute;
+                    top: 10%;
+                    left: 6%;
+                    color: $white;
+                    font-size: $h2-font-size;
+                    font-weight: bold;
+                    z-index: 10;
+                    pointer-events: none;
+                    text-align: left;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    text-shadow: $text-shadow;
+                }
+
+                .text-overlay-secondary {
+                    position: absolute;
+                    top: 28%;
+                    left: 6%;
+                    color: $white;
+                    font-size: $h3-font-size;
+                    font-weight: $primary-font-weight;
+                    z-index: 10;
+                    pointer-events: none;
+                    text-align: left;
+                    width: 100%;
+                }
+
+                .btn-view-menu {
+                    position: absolute;
+                    top: 88%;
+                    left: 6%;
+                    background-color: $primary-color;
+                    color: $white;
+                    text-decoration: none;
+                    font-size: $secondary-font-size;
+                    font-weight: $primary-font-weight;
+                    padding: 0 16px;
+                    text-shadow: none;
+                    box-shadow: 2px 2px 0 $secondary-color;
+                    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                    z-index: 10;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: darken($primary-color, 10%);
+                        box-shadow: 6px 6px 0 $primary-color;
+                    }
                 }
             }
         }

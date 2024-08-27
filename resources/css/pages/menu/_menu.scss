@@ -1,59 +1,39 @@
-/* Style for the PDF viewer */
-.menu-pdf-container {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-
-    #pdf-viewer {
-        width: 100%;
-        height: auto;
-        display: flex;
-        flex-wrap: wrap;
-        align-content: center;
-        flex-direction: column;
-        justify-content: center;
-        overflow: hidden;
-
-        canvas {
-            width: 100%;
-            height: auto;
-            display: block;
-            margin-bottom: 10px;
-        }
-    }
-}
-
-.menu-image-container {
-    width: 86%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
-    img {
-        width: 100%; 
-        height: auto;
-        transition: none;
-        transform: none;
-    }
-}
-
 .menu-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-@media (min-width: 798px) and (max-width: 1199px) {
-    .menu-image-container {
-        width: 100%;
+    width: 100%;
 
-        img {
-            width: 100%;
+    .menu-image-container,
+    .menu-pdf-container {
+        width: 100%; // Full width for both containers
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+
+        img,
+        canvas {
+            width: 100%; // Ensure the content inside the container is also full width
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+    }
+}
+
+.menu-pdf-container {
+    display: flex;
+    flex-direction: column; // Stack PDF pages vertically
+    justify-content: center;
+    align-items: center;
+
+    .pdf-page-wrapper {
+        width: 100%;
+        margin-bottom: 20px;
+
+        canvas {
+            width: 100%; // Full-width for each PDF page
             height: auto;
         }
     }

@@ -17,7 +17,7 @@
     ])
     @endcomponent
 
-    <div class="container">
+    <div class="container-home">
         <div class="row">
             <div class="col-lg-6 col-md-12">
                 @component('partials.slider', [

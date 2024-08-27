@@ -4,7 +4,7 @@
         <i class="fas fa-times"></i>
     </div>
     <a class="navbar-brand" href="/">
-        <img src="{{ $settings['brand_logo']->image_url ?? asset('storage/images/logo.png') }}" alt="Logo">
+        <img src="{{ $settings['brand_logo']->image_url ?? asset('storage/images/logo.png') }}">
     </a>
     <ul class="nav_list">
         <li class="nav_item"><a href="/" class="nav_link">Home</a></li>

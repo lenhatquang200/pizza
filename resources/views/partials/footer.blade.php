@@ -3,7 +3,7 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <a class="brand" href="/">
-                    <img src="{{ $settings['brand_logo']->image_url ?? asset('storage/default/logo.png') }}" alt="Logo">
+                    <img src="{{ $settings['brand_logo']->image_url ?? asset('storage/default/logo.png') }}">
                 </a>
                 <div class="social-icons">
                     @if(isset($settings['facebook_url']) && $settings['facebook_url']->value)

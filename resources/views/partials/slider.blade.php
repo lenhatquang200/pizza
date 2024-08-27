@@ -8,7 +8,7 @@
                     @endisset
 
                     <a href="{{ $image->url ?? '#' }}">
-                        <img src="{{ asset('storage/' . $image->imageurl) }}" alt="{{ $altText }}">
+                        <img src="{{ asset('storage/' . $image->imageurl) }}">
                     </a>
 
                     @if($overlayTextprimary)
