@@ -51,6 +51,7 @@
 }
 
 #menu-image-slider {
+    margin:10px 0;
     .carousel-slide {
         .text-overlay-wrapper {
             .text-overlay-container {
@@ -67,7 +68,6 @@
                     pointer-events: none;
                     text-align: center;
                     width: 100%;
-                    padding: 0 16px;
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
