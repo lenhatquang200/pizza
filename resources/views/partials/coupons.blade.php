@@ -3,8 +3,9 @@
         @foreach ($coupons as $coupon)
             <div class="carousel-slide">
                 <div class="text-overlay-wrapper">
-                    <img src="{{ asset('storage/' . $coupon->bannerurl) }}" alt="Coupon Image {{ $loop->index + 1 }}">
-
+                    <a href="{{ $coupon->url }}" class="carousel-link">
+                        <img src="{{ asset('storage/' . $coupon->bannerurl) }}" alt="Coupon Image {{ $loop->index + 1 }}">
+                    </a>
                     @if($overlayTextprimary || $overlayTextsecondary || $buttonUrl)
                         <div class="text-overlay-container">
                             @if($overlayTextprimary)
@@ -14,7 +15,7 @@
                                 <div class="text-overlay-secondary">{{ $overlayTextsecondary }}</div>
                             @endif
                             @if($buttonUrl)
-                                <a href="{{ $buttonUrl }}" class="btn-view-menu">{{ $buttonText }}</a>
+                            <a href="{{ $coupon->url }}" class="btn-view-menu">ORDER NOW</a>
                             @endif
                         </div>
                     @endif

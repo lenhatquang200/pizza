@@ -1,9 +1,6 @@
 /* Style for the PDF viewer */
 .menu-pdf-container {
-    padding: 10px;
-    margin: 0 auto;
     width: 100%;
-    height: auto;
     display: flex;
     flex-wrap: wrap;
     align-content: center;
@@ -23,24 +20,41 @@
         overflow: hidden;
 
         canvas {
+            width: 100%;
+            height: auto;
             display: block;
             margin-bottom: 10px;
         }
     }
 }
 
-/* Style for the image container */
 .menu-image-container {
-    width: 100%;
+    width: 86%;
     display: flex;
-    justify-content: center; // Center the image horizontally
-    align-items: center;    // Center the image vertically if needed
-    text-align: center;     // Center-align text within the container
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 
     img {
-        width: 86%;          // Ensure the image scales to 86% of its container
-        height: auto;        // Maintain aspect ratio
-        transition: none;    // Disable transition effects
-        transform: none;     // Ensure no scaling or transformation on hover
+        width: 100%; 
+        height: auto;
+        transition: none;
+        transform: none;
+    }
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@media (min-width: 798px) and (max-width: 1199px) {
+    .menu-image-container {
+        width: 100%;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
     }
 }

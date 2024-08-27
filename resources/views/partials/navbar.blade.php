@@ -16,7 +16,7 @@
                 </div>
                 <div class="address-info">
                     <a href="/contact-us" class="btn btn-address">
-                        <i class="fas fa-map-marker-alt address-icon"></i> Address
+                        <i class="fas fa-map-marker-alt address-icon"></i>
                     </a>
                     <p class="address-details">
                         120 Cedar Grove Ln, Cedar Grove Center Somerset, NJ 08873
