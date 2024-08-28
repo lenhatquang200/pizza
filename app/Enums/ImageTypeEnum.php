@@ -6,7 +6,6 @@ class ImageTypeEnum
 {
     const BANNERHOME = 'Banner Home';
     const BANNERMENU = 'Banner Menu';
-    const GALLERY = 'Gallery';
 
     /**
      * Get all available image types as an associative array.
@@ -18,7 +17,6 @@ class ImageTypeEnum
         return [
             self::BANNERHOME => 'Banner Home',
             self::BANNERMENU => 'Banner Menu',
-            self::GALLERY => 'Gallery',
         ];
     }
 
