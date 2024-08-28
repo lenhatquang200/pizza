@@ -14,7 +14,6 @@
                         CODE: {{ $coupon->couponcode  }}
                         <i class="fa-regular fa-copy"></i>
                     </a>
-                    assd
                 </div>
             @endforeach
         </div>
