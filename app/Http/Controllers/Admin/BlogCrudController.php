@@ -137,7 +137,9 @@ class BlogCrudController extends CrudController
 
         \Alert::success('Blog created successfully.')->flash();
 
-        return redirect()->back();
+        $this->crud->setSaveAction();
+
+        return $this->crud->performSaveAction();
     }
 
     /**
@@ -172,6 +174,8 @@ class BlogCrudController extends CrudController
 
         \Alert::success('Blog updated successfully.')->flash();
 
-        return redirect()->back();
+        $this->crud->setSaveAction();
+
+        return $this->crud->performSaveAction();
     }
 }

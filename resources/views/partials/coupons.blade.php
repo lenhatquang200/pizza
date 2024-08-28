@@ -14,9 +14,10 @@
                             @if($overlayTextsecondary)
                                 <div class="text-overlay-secondary">{{ $overlayTextsecondary }}</div>
                             @endif
-                            @if($buttonUrl)
-                            <a href="{{ $coupon->url }}" class="btn-view-menu">ORDER NOW</a>
-                            @endif
+                                    <a href="#" class=" btn-coupon btn-view-menu text-uppercase" data-code="{{ $coupon->couponcode  }}">
+                                        CODE: {{ $coupon->couponcode  }}
+                                        <i class="fa-regular fa-copy"></i>
+                                    </a>
                         </div>
                     @endif
 

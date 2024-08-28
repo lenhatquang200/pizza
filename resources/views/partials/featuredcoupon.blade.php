@@ -1,4 +1,4 @@
-@if(session()->has('featured_shown') === false && $featuredCoupon)
+@if((session()->has('featured_shown') === false || session()->get('featured_shown')==null) && $featuredCoupon)
     @php
         session()->put('featured_shown', true);
     @endphp

@@ -18,7 +18,7 @@ class BlogController extends Controller
 
     public function show($slug)
     {
-        $blog = Blog::where('slug', $slug)->select('image', 'content', 'created_at')->firstOrFail();
+        $blog = Blog::where('slug', $slug)->firstOrFail();
         return view('blogs.show', compact('blog'));
     }
     /**

@@ -15,16 +15,12 @@ class HomeController extends Controller
         $today = Carbon::now();
 
         $featuredCoupon = Coupon::where('isfeatured', true)
-            ->where('displayfrom', '<=', $today)
-            ->where('displayto', '>=', $today)
             ->first();
 
         $bannerHomeImages = Image::where('imagetype', ImageTypeEnum::BANNERHOME)->get();
         $bannerMenuImages = Image::where('imagetype', ImageTypeEnum::BANNERMENU)->get();
 
-        $coupons = Coupon::where('displayfrom', '<=', $today)
-            ->where('displayto', '>=', $today)
-            ->latest()
+        $coupons = Coupon::latest()
             ->take(2)
             ->get();
 

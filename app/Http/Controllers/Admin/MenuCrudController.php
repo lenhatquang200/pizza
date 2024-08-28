@@ -87,7 +87,9 @@ class MenuCrudController extends CrudController
 
         \Alert::success('Menu created successfully.')->flash();
 
-        return redirect()->back();
+        $this->crud->setSaveAction();
+
+        return $this->crud->performSaveAction();
     }
 
     public function update(Request $request)
@@ -122,6 +124,8 @@ class MenuCrudController extends CrudController
 
         \Alert::success('Menu updated successfully.')->flash();
 
-        return redirect()->back();
+        $this->crud->setSaveAction();
+
+        return $this->crud->performSaveAction();
     }
 }

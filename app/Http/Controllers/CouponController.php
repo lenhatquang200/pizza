@@ -12,9 +12,7 @@ class CouponController extends Controller
     {
         $today = Carbon::now();
 
-        $coupons = Coupon::where('displayfrom', '<=', $today)
-            ->where('displayto', '>=', $today)
-            ->get();
+        $coupons = Coupon::get();
 
         $sliderId = 'coupon-slider';
         return view('coupons.index', compact('coupons', 'sliderId'));

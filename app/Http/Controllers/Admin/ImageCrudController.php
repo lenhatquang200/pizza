@@ -68,7 +68,7 @@ class ImageCrudController extends CrudController
      * @see https://backpackforlaravel.com/docs/crud-operation-create
      * @return void
      */
-    protected function setupCreateOperation()
+    protected function setupCreateOperation($update=false)
     {
         Log::info('Setting up Create Operation for ImageCrudController.');
 
@@ -85,12 +85,17 @@ class ImageCrudController extends CrudController
             'default' => \App\Enums\ImageTypeEnum::BANNERHOME,
         ]);
 
+        $field = [
+          'name' => 'url',
+          'label' => 'Banner Url (can be empty)',
+          'type' => 'text',
+        ];
 
-        CRUD::addField([
-            'name' => 'url',
-            'label' => 'Direct Url',
-            'type' => 'text',
-        ]);
+        if (!$update) {
+            $field['value'] = '#';
+        }
+
+        CRUD::addField($field);
 
         CRUD::addField([
             'name' => 'imageurl',
@@ -111,7 +116,7 @@ class ImageCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        $this->setupCreateOperation();
+        $this->setupCreateOperation(true);
     }
     public function store(\Illuminate\Http\Request $request)
     {
@@ -136,7 +141,9 @@ class ImageCrudController extends CrudController
 
         \Alert::success('Image uploaded successfully.')->flash();
 
-        return redirect()->back();
+        $this->crud->setSaveAction();
+
+        return $this->crud->performSaveAction();
     }
     public function update(\Illuminate\Http\Request $request)
     {
@@ -165,6 +172,8 @@ class ImageCrudController extends CrudController
 
         \Alert::success('Image updated successfully.')->flash();
 
-        return redirect()->back();
+        $this->crud->setSaveAction();
+
+        return $this->crud->performSaveAction();
     }
 }
