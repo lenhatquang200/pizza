@@ -20,5 +20,6 @@ class Coupon extends Model
         'displayfrom',
         'displayto',
         'isfeatured',
+        'descriptions'
     ];
 }

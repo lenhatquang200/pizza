@@ -126,15 +126,6 @@ class CouponCrudController extends CrudController
             ],
 
         ]);
-        CRUD::addField([
-          'name' => 'descriptions',
-          'label' => 'Descriptions',
-          'type' => 'textarea',
-          'attributes' => [
-            'id' => 'content',
-            'rows'=>30
-          ],
-        ]);
     }
 
     /**
