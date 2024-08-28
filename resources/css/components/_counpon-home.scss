@@ -7,23 +7,9 @@
             height: auto;
 
             img {
-                height: 290px;
                 width: 100%;
-                object-fit: cover; // Default setting to cover the container fully
-
-                @media (min-width: 992px) {
-                    max-height: 283px;
-                }
-
-                @media (min-width: 889px) and (max-width: 1199px) {
-                    max-height: 239px;
-                }
-
-                // Ensure the image is fully visible on small screens
-                @media (max-width: 576px) {
-                    height: auto;
-                    object-fit: contain; // Prevent image from being cut off
-                }
+                height: auto;
+                object-fit: cover;
             }
 
             .overlay-background {

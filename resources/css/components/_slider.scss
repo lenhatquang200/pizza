@@ -101,6 +101,10 @@
 
     .coupons-column {
         margin: 16px 0;
+        @media (max-width: 993px) {
+            margin: 0;
+            padding: 0;
+        }
     }
 }
 
@@ -122,8 +126,10 @@
                     height: auto;
                     aspect-ratio: 1 / 1;
                     object-fit: cover;
+                    @media (max-width: 993px) {
+                        width: 100%;
+                    }
                 }
-
                 .custom-overlay {
                     position: absolute;
                     top: 6%;
