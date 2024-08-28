@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid blog-container">
+<div class="container-fluid blog-container ">
+
     <h1 class="h1-custom">{{ $blog->title }}</h1>
     <div class="text-custom">
         @if ($blog->image)
@@ -12,7 +13,7 @@
         </div>
     </div>
     <div class="blog-metadata">
-        <p>Published on: {{ $blog->created_at->format('d M Y') }}</p>
+        <p>Published on: {{ $blog->created_at->format('M, d Y') }}</p>
     </div>
 </div>
 @endsection

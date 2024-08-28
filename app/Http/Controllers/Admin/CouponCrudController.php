@@ -50,10 +50,10 @@ class CouponCrudController extends CrudController
             ->height('60px')
             ->width('auto');
 
-        CRUD::column('validfrom')->label('Valid From')->type('datetime');
-        CRUD::column('validto')->label('Valid To')->type('datetime');
-        CRUD::column('displayfrom')->label('Display From')->type('datetime');
-        CRUD::column('displayto')->label('Display To')->type('datetime');
+        CRUD::column('couponcode')->label('Code')->type('text');
+//        CRUD::column('validto')->label('Valid To')->type('datetime');
+//        CRUD::column('displayfrom')->label('Display From')->type('datetime');
+//        CRUD::column('displayto')->label('Display To')->type('datetime');
         CRUD::column('isfeatured')->label('Featured')->type('boolean');
 
         Log::info('Data in list operation:', ['data' => CRUD::getEntries()]);
@@ -66,53 +66,65 @@ class CouponCrudController extends CrudController
      * @see https://backpackforlaravel.com/docs/crud-operation-create
      * @return void
      */
-    protected function setupCreateOperation()
+    protected function setupCreateOperation($update =false)
     {
         CRUD::setValidation(CouponRequest::class);
+        $field = [
+          'name' => 'url',
+          'label' => 'Coupon URL (can be empty)',
+          'type' => 'text',
+        ];
+
+        if (!$update) {
+            $field['value'] = '#';
+        }
+
+        CRUD::addField($field);
         CRUD::addFields([
             [
                 'name' => 'bannerurl',
-                'label' => 'Banner',
+                'label' => 'Coupon banner',
                 'type' => 'upload',
                 'upload' => true,
                 'disk' => 'public',
-                'prefix' => '',
+                'prefix' => ''
             ],
             [
                 'name' => 'couponcode',
                 'label' => 'Coupon Code',
                 'type' => 'text',
+                'attributes'=> [
+                  'required' => true,
+                  'oninput' => 'this.value = this.value.toUpperCase()' // Converts input to uppercase
+                ]
             ],
-            [
-                'name' => 'url',
-                'label' => 'Coupon URL',
-                'type' => 'text',
-            ],
-            [
-                'name' => 'validfrom',
-                'label' => 'Valid From',
-                'type' => 'datetime',
-            ],
-            [
-                'name' => 'validto',
-                'label' => 'Valid To',
-                'type' => 'datetime',
-            ],
-            [
-                'name' => 'displayfrom',
-                'label' => 'Display From',
-                'type' => 'datetime',
-            ],
-            [
-                'name' => 'displayto',
-                'label' => 'Display To',
-                'type' => 'datetime',
-            ],
+
+//            [
+//                'name' => 'validfrom',
+//                'label' => 'Valid From',
+//                'type' => 'datetime',
+//            ],
+//            [
+//                'name' => 'validto',
+//                'label' => 'Valid To',
+//                'type' => 'datetime',
+//            ],
+//            [
+//                'name' => 'displayfrom',
+//                'label' => 'Display From',
+//                'type' => 'datetime',
+//            ],
+//            [
+//                'name' => 'displayto',
+//                'label' => 'Display To',
+//                'type' => 'datetime',
+//            ],
             [
                 'name' => 'isfeatured',
                 'label' => 'Featured',
                 'type' => 'boolean',
             ],
+
         ]);
     }
 
@@ -124,13 +136,14 @@ class CouponCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        $this->setupCreateOperation();
+        $this->setupCreateOperation(true);
     }
 
     public function store(\Illuminate\Http\Request $request)
     {
         $this->validate($request, [
             'bannerurl' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'couponcode' => 'required',
         ]);
 
         $data = $request->except('bannerurl');
@@ -179,7 +192,8 @@ class CouponCrudController extends CrudController
         $model->update($data);
 
         \Alert::success('Coupon updated successfully.')->flash();
+        $this->crud->setSaveAction();
 
-        return redirect()->back();
+        return $this->crud->performSaveAction();
     }
 }
