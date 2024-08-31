@@ -24,8 +24,15 @@ class CouponRequest extends FormRequest
      */
     public function rules()
     {
+        $isUpdate = $this->route('coupon') !== null;
+
         return [
-            // 'name' => 'required|min:5|max:255'
+            'couponcode' => [
+                'required',
+                'regex:/\S/', // Ensure no whitespace
+                $isUpdate ? 'unique:coupons,couponcode,'.$this->route('coupon') : 'unique:coupons,couponcode',
+            ],
+            'bannerurl' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120'
         ];
     }
 
@@ -49,7 +56,14 @@ class CouponRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+          'couponcode.required' => 'The coupon code is required.',
+            'couponcode.regex' => 'The coupon code cannot contain spaces.',
+            'couponcode.unique' => 'The coupon code has already been taken.',
+            'bannerurl.required' => 'The banner is required.',
+            'url.url' => 'The URL must be a valid URL.',
+            'bannerurl.image' => 'The banner must be an image.',
+            'bannerurl.mimes' => 'The banner must be a file of type: jpeg, png, jpg, gif.',
+            'bannerurl.max' => 'The banner image may not be greater than 5MB.',
         ];
     }
 }

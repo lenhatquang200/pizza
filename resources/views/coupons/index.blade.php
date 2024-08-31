@@ -6,9 +6,15 @@
         <div id="{{ $sliderId }}" class="slick-slider">
             @foreach ($coupons as $coupon)
                 <div class="carousel-slide">
+                    @if(!empty($coupon->url) && $coupon->url !== '#:' && $coupon->url !== '#')
                     <a href="{{ $coupon->url }}" class="carousel-link">
                         <img src="{{ asset('storage/' . $coupon->bannerurl) }}">
                     </a>
+                    @else
+                        <a class="carousel-link" style="pointer-events: none;">
+                            <img src="{{ asset('storage/' . $coupon->bannerurl) }}">
+                        </a>
+                    @endif
 
                     <a href="#" class=" btn-coupon btn-view-menu text-uppercase" data-code="{{ $coupon->couponcode  }}">
                         CODE: {{ $coupon->couponcode  }}

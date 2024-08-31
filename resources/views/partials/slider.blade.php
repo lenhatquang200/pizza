@@ -18,7 +18,7 @@
                                 <div class="text-overlay-secondary">{{ $overlayTextsecondary }}</div>
                             @endif
                             @isset($buttonUrl)
-                              <a href="{{ $image->url ?? '#' }}" class="btn-view-menu">{{ $buttonText ?? 'View Our Menu' }}</a>
+                              <a href="{{ $image->url ?? '#' }}" class="btn-view-menu">{{ $buttonText ?? 'VIEW OUR MENU' }}</a>
                             @endisset
                         </div>
                     @endif

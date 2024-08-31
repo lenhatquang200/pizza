@@ -15,11 +15,14 @@
         $column['value'] = json_encode($column['value']);
     }
 
-    if(!empty($column['value'])) {
+    // Check if the value is '0' and handle it accordingly
+    if($column['value'] === '0') {
+        $column['text'] = '0';
+    } elseif(!empty($column['value'])) {
         $column['text'] = $column['prefix'].Str::limit($column['value'], $column['limit'], '…').$column['suffix'];
     }
 @endphp
-
+    
 <span>
     @includeWhen(!empty($column['wrapper']), 'crud::columns.inc.wrapper_start')
         @if($column['escaped'])

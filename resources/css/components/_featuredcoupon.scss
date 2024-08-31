@@ -15,28 +15,35 @@
     .featured-modal {
         position: relative;
         background: rgba(224, 120, 36, 0.5);
-        padding: 2vw;
+        padding: 2rem;
         border-radius: 3px;
         text-align: center;
-        min-width: 50%;
+        width: 80%;
+        max-width: 600px;
         max-height: 80%;
         overflow: hidden;
         transform: translateY(-10%);
+        display: flex;
+        flex-direction: column;
 
         img {
             border-radius: 5px;
-            min-width: 100%;
+            width: 100%;
             height: auto;
             display: block;
-            margin-bottom: 10px;
+            object-fit: contain; /* Ensures the image fits within the container without cropping */
+            max-height: 300px; /* Limits the height of the image */
         }
 
         .featured-content {
             position: relative;
+            flex-grow: 1;
 
             img {
                 width: 100%;
                 height: auto;
+                display: block;
+                object-fit: cover;
             }
 
             .featured-text {
@@ -46,9 +53,11 @@
                 background: rgba(0, 0, 0, 0.6);
                 color: $white;
                 padding: 10px 20px;
-                font-size: 1.2rem;
+                font-size: 1rem;
                 border-radius: 5px;
                 z-index: 1000;
+                max-width: 90%;
+                font-style: italic;
             }
 
             .btn-view-more {
@@ -62,6 +71,7 @@
                 text-decoration: none;
                 border-radius: 5px;
                 z-index: 1000;
+                opacity: 0.8;
 
                 &:hover {
                     color: $primary-color;
@@ -74,7 +84,7 @@
     .close--overlay_btn {
         position: absolute;
         top: 3%;
-        right: 2%;
+        right: 1.4%;
         font-size: $h2-font-size;
         width: 40px;
         height: 40px;
@@ -92,5 +102,26 @@
             color: $white;
             background-color: $primary-color;
         }
+    }
+}
+
+@media (max-width: 576px) {
+    .featured-overlay .featured-modal {
+        padding: 1rem;
+    }
+
+    .featured-overlay .close--overlay_btn {
+        width: 22px;
+        height: 22px;
+        font-size: 1.5rem;
+    }
+
+    .featured-overlay .featured-modal .featured-content .featured-text{
+        font-size: 0.5rem;
+    }
+
+    .featured-overlay .featured-modal .featured-content .btn-view-more{
+        font-size: 0.4rem;
+        padding: 0.5rem;
     }
 }

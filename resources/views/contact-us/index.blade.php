@@ -22,7 +22,7 @@
                     Mon-Sat 11 am - 10 pm
                 </p>
                 <p class="text">
-                    <strong>Accepts All Major Credit Cards:</strong>
+                    <strong>Accepts All Major Credit Cards</strong>
                 </p>
                 <p class="text">
                     <strong>Catering Available</strong>

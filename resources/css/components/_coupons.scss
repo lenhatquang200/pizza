@@ -28,22 +28,27 @@
 
             .btn-view-menu {
                 position: absolute;
-                bottom: 10px;
-                left: 10px;
+                left: 6%;
+                bottom: 6%;
                 background-color: $primary-color;
                 color: $white;
-                font-weight: $primary-font-weight;
                 text-decoration: none;
-                padding: 8px 16px;
-                border-radius: 4px;
+                font-size: clamp(10px, 2vw, $secondary-font-size);
+                font-weight: $primary-font-weight;
+                padding: 0 16px;
                 box-shadow: 2px 2px 0 $secondary-color;
                 transition: background-color 0.3s ease, box-shadow 0.3s ease;
                 z-index: 10;
                 cursor: pointer;
+                max-width: 50%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                display: inline-block;
 
                 &:hover {
                     background-color: darken($primary-color, 10%);
-                    box-shadow: 4px 4px 0 $primary-color;
+                    box-shadow: 6px 6px 0 $primary-color;
                 }
             }
         }

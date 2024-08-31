@@ -62,7 +62,13 @@ class SettingCrudController extends CrudController
         ]);
 
         CRUD::field('value')->label('Value')->type('textarea');
-        CRUD::field('image')->label('Image')->type('upload')->upload('public');
+        CRUD::field('image')
+        ->label('Image')
+        ->type('upload')
+        ->upload('public')
+        ->attributes([
+            'accept' => 'image/*',
+        ]);
     }
 
     protected function setupUpdateOperation()
@@ -70,27 +76,27 @@ class SettingCrudController extends CrudController
         $this->setupCreateOperation();
     }
 
-    public function store(\Illuminate\Http\Request $request)
-    {
-        $this->validate($request, [
-            'title' => 'required|string',
-            'value' => 'nullable|string',
-            'image' => 'nullable|file|mimes:jpeg,png,jpg|max:20480',
-        ]);
+    // public function store(\Illuminate\Http\Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'title' => 'required|string',
+    //         'value' => 'nullable|string',
+    //         'image' => 'nullable|file|mimes:jpeg,png,jpg|max:20480',
+    //     ]);
 
-        $data = $request->except(['image']);
+    //     $data = $request->except(['image']);
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
-            $data['image'] = $imagePath;
-        }
+    //     if ($request->hasFile('image')) {
+    //         $imagePath = $request->file('image')->store('images', 'public');
+    //         $data['image'] = $imagePath;
+    //     }
 
-        CRUD::create($data);
+    //     CRUD::create($data);
 
-        \Alert::success('Setting created successfully.')->flash();
+    //     \Alert::success('Setting created successfully.')->flash();
 
-        return redirect()->back();
-    }
+    //     return redirect()->back();
+    // }
 
     public function update(\Illuminate\Http\Request $request)
     {

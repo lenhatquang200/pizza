@@ -25,31 +25,28 @@
             }
         }
     }
-
-    .slick-prev,
-    .slick-next {
-        display: none;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background-color: rgba(0, 0, 0, 0.5);
-        color: $white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-        font-size: 24px; // Use px for icon size
-        transition: background-color 0.3s ease;
-
-        &:hover {
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-    }
 }
 
 #menu-image-slider {
-    margin:10px 0;
+    margin: 10px 0;
     .carousel-slide {
         .text-overlay-wrapper {
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                height: 200px;
+
+                @media (max-width: 1024px) and (min-width: 769px) {
+                    height: 180px;
+                }
+
+                @media (max-width: 768px) {
+                    height: 160px;
+                }
+            }
+
             .text-overlay-container {
                 .text-overlay-primary {
                     position: absolute;
@@ -71,13 +68,13 @@
 
                 .btn-view-menu {
                     position: absolute;
-                    top: 55%;
+                    top: 65%;
                     left: 50%;
                     transform: translateX(-50%);
                     background-color: $primary-color;
                     color: $white;
                     text-decoration: none;
-                    padding: 2px 24px;
+                    padding: 8px 24px;
                     font-size: $primary-font-size;
                     font-weight: $primary-font-weight;
                     text-shadow: none;
@@ -96,20 +93,9 @@
     }
 }
 
-.container-fluid {
+.container-home {
     overflow: hidden;
 
-    .coupons-column {
-        margin: 16px 0;
-        @media (max-width: 993px) {
-            margin: 0;
-            padding: 0;
-        }
-    }
-}
-
-.container-home{
-    overflow: hidden;
     #home-image-slider {
         .carousel-slide {
             display: flex;
@@ -125,11 +111,13 @@
                     width: 98%;
                     height: auto;
                     aspect-ratio: 1 / 1;
-                    object-fit: cover;
+                    object-fit: contain;
+
                     @media (max-width: 993px) {
                         width: 100%;
                     }
                 }
+
                 .custom-overlay {
                     position: absolute;
                     top: 6%;
@@ -190,7 +178,7 @@
                     text-decoration: none;
                     font-size: $secondary-font-size;
                     font-weight: $primary-font-weight;
-                    padding: 0 16px;
+                    padding: 4px 16px;
                     text-shadow: none;
                     box-shadow: 2px 2px 0 $secondary-color;
                     transition: background-color 0.3s ease, box-shadow 0.3s ease;

@@ -6,7 +6,7 @@
 
     .menu-image-container,
     .menu-pdf-container {
-        width: 100%; // Full width for both containers
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -14,7 +14,8 @@
 
         img,
         canvas {
-            width: 100%; // Ensure the content inside the container is also full width
+            pointer-events: none;
+            width: 100%;
             height: auto;
             display: block;
             object-fit: cover;

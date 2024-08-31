@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CouponRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -70,9 +72,14 @@ class CouponCrudController extends CrudController
     {
         CRUD::setValidation(CouponRequest::class);
         $field = [
-          'name' => 'url',
-          'label' => 'Coupon URL (can be empty)',
-          'type' => 'text',
+            'name' => 'url',
+            'label' => 'Coupon URL (can be empty)',
+            'type' => 'text',
+            'attributes' => [
+                'placeholder' => 'https://abc.xyz',
+            ],
+            'hint' => 'Please enter a URL in the format: https://abc.xyz',
+            'validation' => 'nullable|url',
         ];
 
         if (!$update) {
@@ -80,6 +87,7 @@ class CouponCrudController extends CrudController
         }
 
         CRUD::addField($field);
+
         CRUD::addFields([
             [
                 'name' => 'bannerurl',
@@ -87,8 +95,12 @@ class CouponCrudController extends CrudController
                 'type' => 'upload',
                 'upload' => true,
                 'disk' => 'public',
-                'prefix' => ''
+                'prefix' => '',
+                'attributes' => [
+                    'accept' => 'image/*',
+                ],
             ],
+
             [
                 'name' => 'couponcode',
                 'label' => 'Coupon Code',
@@ -142,8 +154,16 @@ class CouponCrudController extends CrudController
     public function store(\Illuminate\Http\Request $request)
     {
         $this->validate($request, [
-            'bannerurl' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'couponcode' => 'required',
+            'couponcode' => 'required|unique:coupons,couponcode',
+            'bannerurl' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'url' => [
+                'nullable',
+                function ($attribute, $value, $fail) {
+                    if ($value !== '#' && !filter_var($value, FILTER_VALIDATE_URL)) {
+                        $fail('The :attribute must be a valid URL.');
+                    }
+                }
+            ],
         ]);
 
         $data = $request->except('bannerurl');
@@ -161,23 +181,43 @@ class CouponCrudController extends CrudController
 
         \Alert::success('Coupon created successfully.')->flash();
 
-        return redirect()->back();
+        return redirect('admin/coupon');
     }
 
-    public function update(\Illuminate\Http\Request $request)
+    public function update(Request $request)
     {
-        $this->validate($request, [
-            'bannerurl' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        // Define validation rules
+        $validator = Validator::make($request->all(), [
+            'couponcode' => [
+                'required',
+                'regex:/\S/',
+                'unique:coupons,couponcode,' . CRUD::getCurrentEntryId(),
+            ],
+            'url' => [
+                'nullable',
+                function ($attribute, $value, $fail) {
+                    if ($value !== '#' && !filter_var($value, FILTER_VALIDATE_URL)) {
+                        $fail('The :attribute must be a valid URL.');
+                    }
+                }
+            ],
         ]);
 
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        // Process the request data
         $data = $request->except('bannerurl');
 
+        // Handle featured coupon logic
         if (isset($data['isfeatured']) && $data['isfeatured']) {
             \App\Models\Coupon::where('isfeatured', true)
                 ->where('id', '!=', CRUD::getCurrentEntryId())
                 ->update(['isfeatured' => false]);
         }
 
+        // Handle file upload for bannerurl
         if ($request->hasFile('bannerurl')) {
             $imagePath = $request->file('bannerurl')->store('uploads', 'public');
             $data['bannerurl'] = $imagePath;
@@ -188,12 +228,13 @@ class CouponCrudController extends CrudController
             }
         }
 
+        // Update the model
         $model = CRUD::getCurrentEntry();
         $model->update($data);
 
         \Alert::success('Coupon updated successfully.')->flash();
         $this->crud->setSaveAction();
 
-        return $this->crud->performSaveAction();
+        return redirect('admin/coupon');
     }
 }

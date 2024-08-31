@@ -32,7 +32,7 @@ class BlogCrudController extends CrudController
         CRUD::setEntityNameStrings('blog', 'blogs');
         $this->crud->setOperationSetting('menu', [
             'name' => 'Blogs',
-            'icon' => 'fa fa-blog', 
+            'icon' => 'fa fa-blog',
         ]);
     }
 
@@ -81,13 +81,15 @@ class BlogCrudController extends CrudController
                 'rows'=>30
             ],
         ]);
-
         CRUD::addField([
             'name' => 'image',
             'label' => 'Image',
             'type' => 'upload',
             'upload' => true,
             'disk' => 'public',
+            'attributes' => [
+                'accept' => 'image/*',
+            ],
         ]);
 
         CRUD::addField([

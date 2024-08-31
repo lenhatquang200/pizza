@@ -45,9 +45,12 @@ class MenuCrudController extends CrudController
         CRUD::setValidation(MenuRequest::class);
 
         CRUD::field('files')
-            ->type('upload_multiple')
-            ->upload('public')
-            ->label('Upload Files (PDF or Image)');
+        ->type('upload_multiple')
+        ->upload('public')
+        ->label('Upload Files (PDF or Image)')
+        ->attributes([
+            'accept' => 'image/*,.pdf',
+        ]);
     }
 
     protected function setupUpdateOperation()

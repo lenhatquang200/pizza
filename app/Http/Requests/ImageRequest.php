@@ -13,7 +13,7 @@ class ImageRequest extends FormRequest
      */
     public function authorize()
     {
-        // only allow updates if the user is logged in
+        // Only allow if the user is logged in
         return backpack_auth()->check();
     }
 
@@ -25,7 +25,7 @@ class ImageRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120', // Maximum file size: 5MB (5120KB)
         ];
     }
 
@@ -37,7 +37,7 @@ class ImageRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
+            // Define custom attribute names if necessary
         ];
     }
 
@@ -49,7 +49,11 @@ class ImageRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'image.required' => 'An image is required.',
+            'image.image' => 'The file must be an image.',
+            'image.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif.',
+            'image.max' => 'The image may not be greater than 5MB.',
+            'url.url' => 'The URL must be a valid URL.',
         ];
     }
 }

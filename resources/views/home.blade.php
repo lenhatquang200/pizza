@@ -12,7 +12,7 @@
         'overlayTextprimary' => ' ',
         'overlayTextsecondary' => '',
         'buttonUrl' => '#',
-        'buttonText' => 'View Our Menu',
+        'buttonText' => 'VIEW OUR MENU',
         'noImagesMessage' => 'No menu images found.'
     ])
     @endcomponent

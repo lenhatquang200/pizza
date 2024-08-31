@@ -89,6 +89,11 @@ class ImageCrudController extends CrudController
           'name' => 'url',
           'label' => 'Banner Url (can be empty)',
           'type' => 'text',
+          'attributes' => [
+                'placeholder' => 'https://abc.xyz',
+            ],
+            'hint' => 'Please enter a URL in the format: https://abc.xyz',
+            'validation' => 'nullable|url',
         ];
 
         if (!$update) {
@@ -104,6 +109,9 @@ class ImageCrudController extends CrudController
             'upload' => true,
             'disk' => 'public',
             'prefix' => '',
+            'attributes' => [
+                'accept' => 'image/*',
+            ],
         ]);
 
         Log::info('Create Operation setup completed for ImageCrudController.');
@@ -122,7 +130,14 @@ class ImageCrudController extends CrudController
     {
         // Validate input
         $this->validate($request, [
-            'imageurl' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'url' => [
+                'nullable',
+                function ($attribute, $value, $fail) {
+                    if ($value !== '#' && !filter_var($value, FILTER_VALIDATE_URL)) {
+                        $fail('The :attribute must be a valid URL.');
+                    }
+                }
+            ],
         ]);
 
         $data = $request->except('imageurl');
@@ -132,8 +147,6 @@ class ImageCrudController extends CrudController
             $data['imageurl'] = $imagePath;
         }
 
-        // Ensure 'pagename' and 'imagetype' are text values
-        $data['url'] = \App\Enums\PageNameEnum::getName($data['url']);
         $data['imagetype'] = \App\Enums\ImageTypeEnum::getName($data['imagetype']);
 
         // Save data
@@ -143,13 +156,20 @@ class ImageCrudController extends CrudController
 
         $this->crud->setSaveAction();
 
-        return $this->crud->performSaveAction();
+        return redirect('admin/banner');
     }
     public function update(\Illuminate\Http\Request $request)
     {
         // Validate input
         $this->validate($request, [
-            'imageurl' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'url' => [
+                'nullable',
+                function ($attribute, $value, $fail) {
+                    if ($value !== '#' && !filter_var($value, FILTER_VALIDATE_URL)) {
+                        $fail('The :attribute must be a valid URL.');
+                    }
+                }
+            ],
         ]);
 
         $data = $request->except('imageurl');
@@ -164,7 +184,6 @@ class ImageCrudController extends CrudController
             }
         }
 
-        $data['url'] = \App\Enums\PageNameEnum::getName($data['url']);
         $data['imagetype'] = \App\Enums\ImageTypeEnum::getName($data['imagetype']);
 
         $model = CRUD::getCurrentEntry();
@@ -174,6 +193,6 @@ class ImageCrudController extends CrudController
 
         $this->crud->setSaveAction();
 
-        return $this->crud->performSaveAction();
+        return redirect('admin/banner');
     }
 }
