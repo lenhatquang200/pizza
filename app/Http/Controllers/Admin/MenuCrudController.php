@@ -21,7 +21,6 @@ class MenuCrudController extends CrudController
         CRUD::setRoute(config('backpack.base.route_prefix') . '/menu');
         CRUD::setEntityNameStrings('menu', 'menus');
     }
-
     protected function setupListOperation()
     {
         CRUD::column('pdf_or_image')
@@ -33,13 +32,16 @@ class MenuCrudController extends CrudController
                 }
 
                 if ($entry->image_path) {
-                    return '<img src="/storage/' . $entry->image_path . '" style="height: 60px; width: auto;" />';
+                    return '
+                        <a href="#" data-image="/storage/' . $entry->image_path . '" onclick="openImageModal(event)">
+                            <img src="/storage/' . $entry->image_path . '" style="height: 60px; width: auto;" />
+                        </a>
+                    ';
                 }
 
                 return 'No PDF or Image available';
             });
     }
-
     protected function setupCreateOperation()
     {
         CRUD::setValidation(MenuRequest::class);
@@ -58,12 +60,8 @@ class MenuCrudController extends CrudController
         $this->setupCreateOperation();
     }
 
-    public function store(Request $request)
+    public function store(MenuRequest $request)
     {
-        $this->validate($request, [
-            'files.*' => 'nullable|file|mimes:pdf,jpeg,png,jpg|max:20480',
-        ]);
-
         $files = $request->file('files');
 
         $pdfPath = null;
@@ -95,12 +93,8 @@ class MenuCrudController extends CrudController
         return $this->crud->performSaveAction();
     }
 
-    public function update(Request $request)
+    public function update(MenuRequest $request)
     {
-        $this->validate($request, [
-            'files.*' => 'nullable|file|mimes:pdf,jpeg,png,jpg|max:20480',
-        ]);
-
         $files = $request->file('files');
 
         $pdfPath = null;
@@ -117,7 +111,6 @@ class MenuCrudController extends CrudController
                     $imagePath = $filePath;
                 }
 
-                // Update the Menu record with the file paths
                 CRUD::update($request->route('id'), [
                     'pdf_path' => $fileType === 'pdf' ? $pdfPath : null,
                     'image_path' => $fileType !== 'pdf' ? $imagePath : null,

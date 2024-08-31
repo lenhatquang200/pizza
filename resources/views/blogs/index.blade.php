@@ -12,7 +12,9 @@
                     <div class="row no-gutters">
                         <div class="col-lg-2 col-md-4 blog-image-container">
                             @if ($blog->image)
-                                <img src="{{ Storage::url($blog->image) }}" alt="{{ $blog->title }}" class="blog-image">
+                                <a href="{{ route('blogs.show', $blog->slug) }}">
+                                    <img src="{{ Storage::url($blog->image) }}" alt="{{ $blog->title }}" class="blog-image">
+                                </a>
                             @endif
                         </div>
                         <div class="col-lg-10 col-md-8 blog-content-container">

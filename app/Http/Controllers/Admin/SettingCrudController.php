@@ -37,12 +37,23 @@ class SettingCrudController extends CrudController
 
         CRUD::column('value')->label('Value');
 
-        CRUD::column('image')
-            ->label('Image')
-            ->type('image')
-            ->prefix('storage/')
-            ->height('60px')
-            ->width('auto');
+        $this->crud->addColumn([
+            'name' => 'image',
+            'label' => 'Image',
+            'type' => 'custom_html',
+            'value' => function ($entry) {
+                $imagePath = public_path('storage/' . $entry->image);
+                if (!$entry->image || !file_exists($imagePath)) {
+                    return '-';
+                }
+
+                return '
+                    <a href="#" data-image="/storage/' . $entry->image . '" onclick="openImageModal(event)">
+                        <img src="/storage/' . $entry->image . '" style="height: 60px; width: auto;" />
+                    </a>
+                ';
+            },
+        ]);
 
         Log::info('Data in list operation:', ['data' => CRUD::getEntries()]);
         Log::info('Data from CRUD:', ['data' => $this->crud->getEntries()]);
@@ -122,6 +133,6 @@ class SettingCrudController extends CrudController
 
         \Alert::success('Setting updated successfully.')->flash();
 
-        return redirect()->back();
+        return $this->crud->performSaveAction();
     }
 }

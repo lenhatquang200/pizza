@@ -48,10 +48,18 @@ class BlogCrudController extends CrudController
         $this->crud->addColumn([
             'name' => 'image',
             'label' => 'Image',
-            'type' => 'image',
-            'prefix' => 'storage/',
-            'height' => '60px',
-            'width' => 'auto',
+            'type' => 'custom_html',
+            'value' => function ($entry) {
+                if (!$entry->image || !file_exists(public_path('storage/' . $entry->image))) {
+                    return '-';
+                }
+
+                return '
+                    <a href="#" data-image="/storage/' . $entry->image . '" onclick="openImageModal(event)">
+                        <img src="/storage/' . $entry->image . '" style="height: 60px; width: auto;" />
+                    </a>
+                ';
+            },
         ]);
         CRUD::column('short_description');
     }

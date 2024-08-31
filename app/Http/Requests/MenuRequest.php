@@ -25,9 +25,8 @@ class MenuRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
-            'pdf_path' => 'nullable|file|mimes:pdf|max:20480',
-            'image_path' => 'nullable|file|mimes:jpeg,png,jpg|max:20480',
+            'files' => 'required|array|min:1',
+            'files.*' => 'file|mimes:jpeg,png,jpg,gif,pdf|max:5120',
         ];
     }
 
@@ -51,7 +50,12 @@ class MenuRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'files.required' => 'You must upload at least one file.',
+            'files.array' => 'The files input must be an array.',
+            'files.min' => 'You must upload at least one file.',
+            'files.*.file' => 'Each file must be a valid file.',
+            'files.*.mimes' => 'Each file must be a type of: jpeg, png, jpg, gif, pdf.',
+            'files.*.max' => 'Each file may not be greater than 5MB.',
         ];
     }
 }

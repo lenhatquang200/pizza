@@ -56,10 +56,14 @@ class ImageCrudController extends CrudController
         $this->crud->addColumn([
             'name' => 'imageurl',
             'label' => 'Banner',
-            'type' => 'image',
-            'prefix' => 'storage/',
-            'height' => '60px',
-            'width' => 'auto',
+            'type' => 'custom_html',
+            'value' => function ($entry) {
+                return '
+                    <a href="#" data-image="/storage/' . $entry->imageurl . '" onclick="openImageModal(event)">
+                        <img src="/storage/' . $entry->imageurl . '" style="height: 60px; width: auto;" />
+                    </a>
+                ';
+            },
         ]);
     }
     /**
@@ -126,21 +130,9 @@ class ImageCrudController extends CrudController
     {
         $this->setupCreateOperation(true);
     }
-    public function store(\Illuminate\Http\Request $request)
+    public function store(ImageRequest $request)
     {
-        // Validate input
-        $this->validate($request, [
-            'url' => [
-                'nullable',
-                function ($attribute, $value, $fail) {
-                    if ($value !== '#' && !filter_var($value, FILTER_VALIDATE_URL)) {
-                        $fail('The :attribute must be a valid URL.');
-                    }
-                }
-            ],
-        ]);
-
-        $data = $request->except('imageurl');
+        $data = $request->all();
 
         if ($request->hasFile('imageurl')) {
             $imagePath = $request->file('imageurl')->store('uploads', 'public');
@@ -156,22 +148,10 @@ class ImageCrudController extends CrudController
 
         $this->crud->setSaveAction();
 
-        return redirect('admin/banner');
+        return $this->crud->performSaveAction();
     }
-    public function update(\Illuminate\Http\Request $request)
+    public function update(ImageRequest $request)
     {
-        // Validate input
-        $this->validate($request, [
-            'url' => [
-                'nullable',
-                function ($attribute, $value, $fail) {
-                    if ($value !== '#' && !filter_var($value, FILTER_VALIDATE_URL)) {
-                        $fail('The :attribute must be a valid URL.');
-                    }
-                }
-            ],
-        ]);
-
         $data = $request->except('imageurl');
 
         if ($request->hasFile('imageurl')) {
@@ -193,6 +173,6 @@ class ImageCrudController extends CrudController
 
         $this->crud->setSaveAction();
 
-        return redirect('admin/banner');
+        return $this->crud->performSaveAction();
     }
 }
