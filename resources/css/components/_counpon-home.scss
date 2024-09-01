@@ -25,12 +25,12 @@
                 object-fit: cover;
                 max-height: 276.5px;
 
-                @media (max-width: 1199px) and (min-width: 993px) {
-                    max-height: 233px;
+                @media (max-width: 992px) {
+                    max-height: 350px;
                 }
 
-                @media (max-width: 992px) {
-                    max-height: 280px;
+                @media (max-width: 576px) {
+                    max-height: 250px;
                 }
             }
 
@@ -98,14 +98,14 @@
                 background-color: $primary-color;
                 color: $white;
                 text-decoration: none;
-                font-size: clamp(10px, 2vw, $secondary-font-size);
+                font-size: clamp(16px, 2vw, $secondary-font-size);
                 font-weight: $primary-font-weight;
                 padding: 0 16px;
                 box-shadow: 2px 2px 0 $secondary-color;
                 transition: background-color 0.3s ease, box-shadow 0.3s ease;
                 z-index: 10;
                 cursor: pointer;
-                max-width: 50%;
+                max-width: 80%;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;

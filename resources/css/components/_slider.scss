@@ -75,7 +75,7 @@
                     color: $white;
                     text-decoration: none;
                     padding: 8px 24px;
-                    font-size: $primary-font-size;
+                    font-size: clamp(12px, 2vw, $primary-font-size);
                     font-weight: $primary-font-weight;
                     text-shadow: none;
                     box-shadow: 2px 2px 0 $secondary-color;
@@ -176,7 +176,7 @@
                     background-color: $primary-color;
                     color: $white;
                     text-decoration: none;
-                    font-size: $secondary-font-size;
+                    font-size: clamp(16px, 2vw, $secondary-font-size);
                     font-weight: $primary-font-weight;
                     padding: 4px 16px;
                     text-shadow: none;
@@ -184,7 +184,9 @@
                     transition: background-color 0.3s ease, box-shadow 0.3s ease;
                     z-index: 10;
                     cursor: pointer;
-
+                    @media (max-width: 576px) {
+                        top: 84%;
+                    }
                     &:hover {
                         background-color: darken($primary-color, 10%);
                         box-shadow: 6px 6px 0 $primary-color;
