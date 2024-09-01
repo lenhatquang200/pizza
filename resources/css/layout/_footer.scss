@@ -27,7 +27,7 @@
                 font-size: $primary-font-size;
                 width: 28px;
                 height: 28px;
-                padding: 3px 2.8px;
+                padding: 3.17px 2.8px;
                 color: $white;
                 border-radius: 50%;
                 background-color: $secondary-color;
@@ -116,7 +116,7 @@
             }
 
             .footer-links {
-                width: 200%;
+                width: 100%;
                 gap: 24px;
                 h4{
                     font-size: $h6-font-size;
@@ -130,6 +130,35 @@
                     }
                 }
             }
+        }
+    }
+}
+@media (max-width: 354px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .footer-brand {
+        width: 100%;
+        text-align: center;
+        img {
+            max-width: 120px;
+        }
+        .social-icons {
+            gap: 8px;
+        }
+    }
+
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        text-align: center;
+        gap: 16px;
+        ul {
+            margin-top: 10px;
         }
     }
 }
