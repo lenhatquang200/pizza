@@ -1,11 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const loaderContainer = document.getElementById('loader-container');
-    const content = document.getElementById('content');
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('loader-container').style.display = 'flex';
+});
 
-    loaderContainer.style.display = 'block';
-
-    setTimeout(function() {
-        loaderContainer.style.display = 'none';
-        content.style.display = 'block';
-    }, 1000);
+window.addEventListener('load', function() {
+    document.getElementById('loader-container').style.display = 'none';
 });

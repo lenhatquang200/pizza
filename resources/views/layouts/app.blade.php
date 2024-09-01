@@ -19,7 +19,7 @@
 </head>
 <body>
     <!-- Loader -->
-    {{-- @include('partials.loader') --}}
+    @include('partials.loader')
 
     <!-- Content -->
     <div id="content-container">
