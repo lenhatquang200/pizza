@@ -9,6 +9,10 @@
     box-sizing: border-box;
 }
 
+p{
+    margin: 0;
+    padding: 0;
+}
 /* Reset margin and padding for all column classes */
 .col-lg-6,
 .col-md-12 {
