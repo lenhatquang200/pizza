@@ -9,6 +9,7 @@
             flex: 1 0 48%;
             box-sizing: border-box;
             max-height: 300px;
+            position: relative;
 
             .carousel-link {
                 width: 100%;
@@ -23,6 +24,13 @@
                     height: 100%;
                     display: block;
                     border-radius: 8px;
+                    cursor: pointer;
+                }
+            }
+
+            .no-link {
+                img {
+                    cursor: auto;
                 }
             }
 
