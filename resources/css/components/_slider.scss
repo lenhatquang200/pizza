@@ -39,11 +39,13 @@
                 height: 200px;
 
                 @media (max-width: 1024px) and (min-width: 769px) {
-                    height: 180px;
+                    height: 140px;
                 }
 
                 @media (max-width: 768px) {
-                    height: 160px;
+                    min-height: 72px;
+                    height: auto;
+                    max-height: 90px;
                 }
             }
 
@@ -68,14 +70,14 @@
 
                 .btn-view-menu {
                     position: absolute;
-                    top: 65%;
+                    top: 58%;
                     left: 50%;
                     transform: translateX(-50%);
                     background-color: $primary-color;
                     color: $white;
                     text-decoration: none;
-                    padding: 8px 24px;
-                    font-size: clamp(12px, 2vw, $primary-font-size);
+                    padding: clamp(4px, 0.2vw + 2px, 12px) clamp(8px, 1vw + 4px, 24px);
+                    font-size: clamp(8px, 1.5vw, $primary-font-size);
                     font-weight: $primary-font-weight;
                     text-shadow: none;
                     box-shadow: 2px 2px 0 $secondary-color;
