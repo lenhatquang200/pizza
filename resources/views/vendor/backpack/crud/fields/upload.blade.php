@@ -64,6 +64,7 @@
             padding-top: 5px;
             display: inline-block;
             font-size: 0.9em;
+            overflow-wrap: anywhere;
         }
         .backstrap-file {
           position: relative;
@@ -150,13 +151,13 @@
               $('<input type="hidden" class="order_uploads" name="_order_'+fieldName+'" value="'+fileInput.data('filename')+'">').insertAfter(fileInput);
 
               var observer = new MutationObserver(function(mutations) {
-                
+
                 mutations.forEach(function(mutation) {
-                  if(mutation.attributeName == 'data-row-number') {                    
+                  if(mutation.attributeName == 'data-row-number') {
                     let field = $(mutation.target);
                     field = field.next('input[name="'+mutation.target.getAttribute('name')+'"]');
                     field.attr('name', '_order_'+mutation.target.getAttribute('name'));
-                    field.val(mutation.target.getAttribute('data-filename'));                  
+                    field.val(mutation.target.getAttribute('data-filename'));
                   }
                 });
               });

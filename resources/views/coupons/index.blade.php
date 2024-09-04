@@ -11,8 +11,8 @@
                         <img src="{{ asset('storage/' . $coupon->bannerurl) }}">
                     </a>
                     @else
-                        <a class="carousel-link" style="pointer-events: none;">
-                            <img src="{{ asset('storage/' . $coupon->bannerurl) }}">
+                        <a class="carousel-link">
+                            <img style="pointer-events: none;" src="{{ asset('storage/' . $coupon->bannerurl) }}">
                         </a>
                     @endif
 

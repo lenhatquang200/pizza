@@ -68,6 +68,7 @@
 			padding-top: 5px;
 			display: inline-block;
 			font-size: 0.9em;
+            overflow-wrap: anywhere;
 		}
 		.backstrap-file {
 			position: relative;
@@ -231,7 +232,7 @@
 					selectedFiles.forEach(file => {
 						files += '<span class="badge mt-1 mb-1 text-bg-secondary badge-primary">'+file.name+'</span> ';
 					});
-				
+
 					// if existing files is not on the page, create a new div a prepend it to the fileInput
 					if(existingFiles.length === 0) {
 						existingFiles = $('<div class="well well-sm existing-file mb-2"></div>');

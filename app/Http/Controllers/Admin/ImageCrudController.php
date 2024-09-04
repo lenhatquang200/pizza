@@ -42,18 +42,6 @@ class ImageCrudController extends CrudController
     protected function setupListOperation()
     {
         $this->crud->addColumn([
-            'name' => 'imagetype',
-            'label' => 'Position',
-            'type' => 'text',
-        ]);
-
-        $this->crud->addColumn([
-            'name' => 'url',
-            'label' => 'Direct Url',
-            'type' => 'text',
-        ]);
-
-        $this->crud->addColumn([
             'name' => 'imageurl',
             'label' => 'Banner',
             'type' => 'custom_html',
@@ -64,6 +52,18 @@ class ImageCrudController extends CrudController
                     </a>
                 ';
             },
+        ]);
+        
+        $this->crud->addColumn([
+            'name' => 'imagetype',
+            'label' => 'Position',
+            'type' => 'text',
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'url',
+            'label' => 'Direct Url',
+            'type' => 'text',
         ]);
     }
     /**
