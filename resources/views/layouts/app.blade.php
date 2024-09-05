@@ -23,15 +23,15 @@
 
     <!-- Content -->
     <div id="content-container">
-        <div id="content">
+        <div id="content ">
             <!-- Navbar -->
-            @include('partials.navbar')
+            @include('partials.navbar_menu')
+
             @include('partials.sidebar')
 
             <div class="container-fluid">
-                <div class="container">
+                <div class="container ">
 {{--                    @if (!Route::is('blogs.show'))--}}
-                        @include('partials.navbar_menu')
 {{--                    @endif--}}
                     @yield('content')
                 </div>

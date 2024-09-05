@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Image;
 use App\Models\Coupon;
@@ -35,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
         Coupon::observe(CouponObserver::class);
         Menu::observe(MenuObserver::class);
         Setting::observe(SettingObserver::class);
+        Paginator::useBootstrapFour();
 
         view()->composer('*', function ($view) {
             $settings = Setting::all()->keyBy('title');

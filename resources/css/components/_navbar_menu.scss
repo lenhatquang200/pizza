@@ -1,6 +1,6 @@
 .navbar_menu {
     background-color: $primary-color;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgb(45 40 40 / 74%);
     padding: 0 14px;
     position: relative;
     width: 100%;
@@ -9,7 +9,7 @@
 
     .nav_list {
       display: flex;
-      justify-content: center;
+      justify-content: space-around;
       align-items: center;
       list-style: none;
       padding: 0;

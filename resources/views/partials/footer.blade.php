@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container border-top">
     <footer class="footer footer-expand-lg">
         <div class="footer-content">
             <div class="footer-brand">

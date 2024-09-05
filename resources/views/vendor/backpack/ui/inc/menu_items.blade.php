@@ -6,3 +6,6 @@
 <x-backpack::menu-item title="Blogs" icon="la la-pencil-alt" :link="backpack_url('blog')" />
 <x-backpack::menu-item title="Settings" icon="la la-cogs" :link="backpack_url('setting')" />
 
+
+<x-backpack::menu-item title="Categories" icon="la la-question" :link="backpack_url('category')" />
+<x-backpack::menu-item title="Products" icon="la la-question" :link="backpack_url('product')" />

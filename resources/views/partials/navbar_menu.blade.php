@@ -2,8 +2,16 @@
     <div class="container">
         <div class="hamburger-menu" id="hamburger-menu">
             <i class="hamburger-icon fas fa-bars"></i>
+            <a class="navbar-brand" style="text-align: center;
+    flex: auto;" href="/">
+                <img style="    filter: invert(1);" src="{{ $settings['brand_logo']->image_url ?? asset('storage/default/logo.png') }}">
+            </a>
         </div>
-        <ul class="nav_list">
+
+        <ul class="nav_list py-2">
+            <a class="navbar-brand" href="/">
+                <img style="    filter: invert(1);" src="{{ $settings['brand_logo']->image_url ?? asset('storage/default/logo.png') }}">
+            </a>
             <li class="nav_item"><a href="/" class="nav_link">Home</a></li>
             <li class="nav_item"><a href="/menu" class="nav_link">Menu</a></li>
             <li class="nav_item"><a href="https://piazzaorsillo.pdqonlineordering.com/Titlepage.aspx" class="nav_link">Order Online</a></li>
@@ -15,4 +23,3 @@
         </ul>
     </div>
 </nav>
- 
