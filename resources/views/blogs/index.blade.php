@@ -19,7 +19,7 @@
                         </div>
                         <div class="col-lg-10 col-md-8 blog-content-container">
                             <a href="{{ route('blogs.show', $blog->slug) }}">
-                                <h2 class="blog-title">{{ $blog->title }}</h2>
+                                <h4 class="blog-title">{{ $blog->title }}</h4>
                             </a>
                             <p class="blog-date"><i>{{ $blog->created_at->format('M, d Y') }}</i></p>
                             <p class="blog-description">{{ $blog->short_description }}</p>
