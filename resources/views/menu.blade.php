@@ -55,7 +55,7 @@
                             <div class="col-lg-4 col-12 col-sm-6 mb-4">
                                 <div class="card" style="height: 230px; display: flex; flex-direction: column; position: relative;">
                                     <!-- Product Image -->
-                                    <div class="text-center" style="flex: 1; display: flex; align-items: center; justify-content: center; height: 50%; position: relative;">
+                                    <div data-bs-toggle="modal" data-bs-target="#productModal{{ $product->id }}" class="text-center" style="flex: 1; display: flex; align-items: center; justify-content: center; height: 50%; position: relative;">
                                         <img style="max-height: 100%; max-width: 100%; object-fit: contain;" src="{{ $product->image_url }}" class="card-img-top" alt="No Image">
                                         <!-- Category Overlay -->
                                         <div class="category-overlay" style="position: absolute; top: 0; left: 0; background: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 3px;">
@@ -92,6 +92,42 @@
                                     </div>
                                 </div>
 
+                            </div>
+                            <div class="modal fade" id="productModal{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="productModalLabel{{ $product->id }}" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="productModalLabel{{ $product->id }}">{{ $product->name }}</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Product Image -->
+                                                <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="img-fluid mb-3" style="max-width: 100%; height: auto;">
+
+                                            <h4>
+                                                {{ $product->name }}
+                                            </h4>
+                                        <!-- Product Price -->
+                                            <h5>Price: ${{ number_format($product->price, 2) }}</h5>
+
+                                            <!-- Product Description -->
+                                            <div class="mb-3">
+                                                <h6>Description:</h6>
+                                                <p>{{ $product->description }}</p>
+                                            </div>
+
+                                        <!-- Special Status -->
+
+
+                                            <!-- Category -->
+                                            <div>
+                                                 <span class="h6">Category:</span> <span>{{ $product->category->name }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         @empty
                             <p>No products found</p>
