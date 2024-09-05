@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid blog-container">
+<div class="bg-white">
     <h1 class="h1-custom">Blogs List</h1>
     <div class="row blog-list">
         @if ($blogs->isEmpty())

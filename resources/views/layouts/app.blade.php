@@ -29,12 +29,10 @@
 
             @include('partials.sidebar')
 
-            <div class="container-fluid">
-                <div class="container ">
+            <div class="container">
 {{--                    @if (!Route::is('blogs.show'))--}}
 {{--                    @endif--}}
                     @yield('content')
-                </div>
             </div>
 
             @if(!View::hasSection('no-footer'))

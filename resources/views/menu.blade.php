@@ -5,7 +5,7 @@
         <h1 class="h1-custom">Welcome PIAZZA ORSILLO’s Menu</h1>
 
         <div class="container">
-            <div class="row">
+            <div class="row ps-4">
                 <!-- Filter Section (Left) -->
                 <div class="col-md-3 border-end">
                     <h5>Filter Products</h5>
@@ -50,9 +50,9 @@
                     <h5>Products</h5>
                     <hr>
                     <!-- Display Products -->
-                    <div class="row">
+                    <div class="row ">
                         @forelse($products as $product)
-                            <div class="col-lg-4 col-6 mb-4">
+                            <div class="col-lg-4 col-12 col-sm-6 mb-4">
                                 <div class="card" style="height: 230px; display: flex; flex-direction: column; position: relative;">
                                     <!-- Product Image -->
                                     <div class="text-center" style="flex: 1; display: flex; align-items: center; justify-content: center; height: 50%; position: relative;">
@@ -69,7 +69,7 @@
                                         <p class="card-text">{{ $product->short_description }}</p>
 
                                         <!-- Push the Name and Price to the Bottom -->
-                                        <div class="mt-3  justify-content-between align-items-center">
+                                        <div class="mt-1  justify-content-between align-items-center">
                                             <!-- Product Name (Prevent Overflow) -->
                                             <h5 class="card-title mb-3 text-truncate" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0;">
                                                 {{ $product->name }}
