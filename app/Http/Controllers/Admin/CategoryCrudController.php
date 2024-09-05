@@ -60,7 +60,7 @@ class CategoryCrudController extends CrudController
 
         CRUD::field('name')->type('text')->label('Category Name');
         CRUD::field('description')->type('textarea')->label('Description');
-        CRUD::field('image')->type('upload')->label('Category Image')->crop(true)->aspect_ratio(1);
+//        CRUD::field('image')->type('upload')->label('Category Image')->crop(true)->aspect_ratio(1);
 
 
         /**
