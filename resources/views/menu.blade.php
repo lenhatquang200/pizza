@@ -73,8 +73,8 @@
                                             <h5 class="card-title mb-1 text-truncate" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0;">
                                                 {{ $product->name }}
                                             </h5>
-                                            <i style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0;"
-                                               class="text-truncate mb-1">{{ $product->short_description }}</i>
+                                            <p style="font-style: italic ;white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0;"
+                                               class="text-truncate mb-1">{{ $product->short_description }}</p>
 
                                             <!-- Product Price and View More Button -->
                                             <div style="display: flex; justify-content: space-between;">
