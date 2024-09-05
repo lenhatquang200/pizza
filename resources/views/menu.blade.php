@@ -70,10 +70,11 @@
                                         <!-- Push the Name and Price to the Bottom -->
                                         <div class="mt-1  justify-content-between align-items-center">
                                             <!-- Product Name (Prevent Overflow) -->
-                                            <h5 class="card-title mb-3 text-truncate" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0;">
+                                            <h5 class="card-title mb-1 text-truncate" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0;">
                                                 {{ $product->name }}
                                             </h5>
-                                            <i class="text-truncate">{{ $product->short_description }}</i>
+                                            <i style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0;"
+                                               class="text-truncate mb-1">{{ $product->short_description }}</i>
 
                                             <!-- Product Price and View More Button -->
                                             <div style="display: flex; justify-content: space-between;">
