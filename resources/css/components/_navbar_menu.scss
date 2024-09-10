@@ -6,6 +6,7 @@
     width: 100%;
     display: flex;
     align-items: center;
+  height: 68px;
 
     .nav_list {
       display: flex;
@@ -32,7 +33,7 @@
           text-decoration: none;
           color: $white;
           font-size: $primary-font-size;
-          padding: 24px 0;
+          padding: 22px 0;
           transition: color 0.3s ease, background-color 0.3s ease;
 
           &:hover {
@@ -46,7 +47,7 @@
         }
 
         @media (min-width: 768px) and (max-width: 1199px) {
-          width: 14%;
+          width: 20%;
         }
 
         @media (max-width: 768px) {
@@ -64,8 +65,7 @@
         display: flex;
         align-items: center;
         cursor: pointer;
-        background-color: $primary-color;
-        padding: 14px;
+
         border-radius: 7px;
 
         .hamburger-icon {
