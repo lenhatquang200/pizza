@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::any('git-pull', function () {
+    return view('git-pull');
+});
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/menu', [MenuController::class, 'index'])->name('menu');
 Route::get('/coupons', [CouponController::class, 'index'])->name('coupons.index');
