@@ -35,3 +35,15 @@ body {
     }
 }
 
+.pagination .page-item.active .page-link {
+    color: #fff;
+    background-color: $primary-color;
+    border-color: $secondary-color;
+}
+.page-link:hover {
+    text-decoration: none;
+    color: $primary-color;
+}
+.page-link {
+    color: $secondary-color;
+}
