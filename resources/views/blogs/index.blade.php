@@ -21,7 +21,7 @@
                             <a class="text-decoration-none link-primary" href="{{ route('blogs.show', $blog->slug) }}">
                                 <h4 class="blog-title">{{ $blog->title }}</h4>
                             </a>
-                            <p class="blog-date"><i>{{ $blog->created_at->format('M, d Y') }}</i></p>
+                            <p class="blog-date"><i>{{ $blog->created_at->isoFormat('MMMM Do YYYY') }}</i></p>
                             <p class="blog-description">{{ $blog->short_description }}</p>
                         </div>
                     </div>

@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="blog-metadata">
-        <p>Published on: {{ $blog->created_at->format('M, d Y') }}</p>
+        <p>Published on: {{$blog->created_at->isoFormat('MMMM Do YYYY') }}</p>
     </div>
 </div>
 @endsection
