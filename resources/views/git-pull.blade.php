@@ -43,7 +43,7 @@ function liveExecuteCommand($cmd)
 <div class="jumobotron">
     <?php
     while (@ ob_end_flush()); // end all output buffers if any
-    $cmd = 'cd /home/weedies/web && git pull origin dev_quang';
+    $cmd = 'cd /home/pizza && git pull';
     echo '<pre>';
     liveExecuteCommand($cmd);
     echo '</pre>';
