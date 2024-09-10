@@ -25,7 +25,6 @@
                     'sliderId' => 'home-image-slider',
                     'customOverlay' => false,
                     'customText' => ' ',
-                    'altText' => 'Home Image {{ $loop->index + 1 }}',
                     'overlayTextprimary' => ' ',
                     'overlayTextsecondary' => ' ',
                     'buttonUrl' => '#',
